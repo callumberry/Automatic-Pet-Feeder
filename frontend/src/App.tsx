@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
 import PortionSliderComponent from './components/slider/portionSlider.tsx';
+import TimeSliderComponent from './components/slider/timeSlider.tsx';
 import { LedButton } from './components/testing/ledButton.tsx';
-import SelectComponent from './components/select/select.tsx';
+
 
 
 
@@ -36,7 +37,7 @@ function App() {
         <div>
           <PortionSliderComponent /> 
           <LedButton />
-          <SelectComponent/>
+          <TimeSliderComponent /> 
         </div>
       ) : (
         <div>

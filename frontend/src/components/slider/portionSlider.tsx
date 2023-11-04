@@ -58,7 +58,7 @@ const SliderComponent = () => {
   return (
     <div>
       
-      <Box sx={{ width: 300 }}>
+      <Box sx={{ width: 800 }}>
         <h1>Slider Test</h1>
         <Slider
           value={sliderValue} // Use the state variable as the value
