@@ -86,12 +86,14 @@ export default function MinimumDistanceSlider() {
   const [value1, setValue1] = React.useState<number[]>([7, 18]);
   const [firstFeed, setFirstFeed] = useState<string>('07:00');; 
   const [secondFeed, setSecondFeed] = useState<string>('18:00'); 
+  //const [firstFeed, setFirstFeed] = useState(7);; 
+  //const [secondFeed, setSecondFeed] = useState(18); 
+
 
   const handleScheduleClick = () => {
     const firstFeedLabel = marks.find((mark) => mark.value === value1[0])?.label || '';
     const secondFeedLabel = marks.find((mark) => mark.value === value1[1])?.label || '';
-  
-    // Update feedCount and portionCount with labels
+
     setFirstFeed(firstFeedLabel);
     setSecondFeed(secondFeedLabel);
   };
@@ -117,6 +119,12 @@ export default function MinimumDistanceSlider() {
     } else {
       setValue1(newValue as number[]);
     }
+    //const firstFeedLabel = marks.find((mark) => mark.value === value1[0])?.label || '';
+    //const secondFeedLabel = marks.find((mark) => mark.value === value1[1])?.label || '';
+  
+    // Update feedCount and portionCount with labels
+    //setFirstFeed(firstFeedLabel);
+    //setSecondFeed(secondFeedLabel);
   };
 
 
@@ -140,9 +148,10 @@ export default function MinimumDistanceSlider() {
           }}
       />
       <ScheduleButton
-        firstFeed={firstFeed}
-        secondFeed={secondFeed}
-        onScheduleClick={handleScheduleClick}
+         firstFeedLabel={marks.find((mark) => mark.value === value1[0])?.label || ''}
+         secondFeedLabel={marks.find((mark) => mark.value === value1[1])?.label || ''}
+         onScheduleClick={handleScheduleClick}
+      
       />
        <div>
         First Feed Time: {firstFeed}

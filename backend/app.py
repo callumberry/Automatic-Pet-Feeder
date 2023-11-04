@@ -3,12 +3,9 @@ from flask_cors import CORS
 from flask import request
 import ntplib
 from time import ctime
-from apscheduler.schedulers.background import BackgroundScheduler
+#from apscheduler.schedulers.background import BackgroundScheduler
 #from ledControl import toggle_led
 #from servoControl import move_servo_min_to_max
-performScheduledAction = False
-timeOne = None
-timeTwo = None
 
 app = Flask(__name__)
 CORS(app)
@@ -25,8 +22,8 @@ def get_current_time():
     return f"{hour}:{minute}"
     
 
-scheduler = BackgroundScheduler()
-scheduler.start()
+#scheduler = BackgroundScheduler()
+#scheduler.start()
 
 
 
@@ -56,29 +53,26 @@ def perform_servo_action():
 
 @app.route('/api/schedule-action', methods=['GET'])
 def perform_schedule_action():
-    global performScheduledAction
-    global timeOne
-    global timeTwo
-    timeOne = request.args.get('timeOne')
-    timeTwo = request.args.get('timeTwo')
+    timeOne = request.args.get('timeOne', default="07:00")
+    timeTwo = request.args.get('timeTwo', default="18:00")
    
     print("timeOne:", timeOne," timeTwo:", timeTwo)
     
     return jsonify({'message': 'Schedule'})
 
-def schedule_job():
-    current_time = get_current_time()
+#def schedule_job():
+#    current_time = get_current_time()
 
-    print("Current Time:", current_time, " timeOne:", timeOne," timeTwo:", timeTwo)
+#    print("Current Time:", current_time, " timeOne:", timeOne," timeTwo:", timeTwo)
 
-    if current_time == timeOne or current_time == timeTwo:
+#    if current_time == timeOne or current_time == timeTwo:
         #move_servo_min_to_max()
-        print("Performing scheduled action at", current_time)
-    else:
-        print("No action performed", current_time)
+#        print("Performing scheduled action at", current_time)
+#    else:
+#        print("No action performed", current_time)
 
 # Schedule the job to run every minute
-scheduler.add_job(schedule_job, 'interval', minutes=1)
+#scheduler.add_job(schedule_job, 'interval', minutes=1)
 
 if __name__ == '__main__':
     app.run(debug=True)
