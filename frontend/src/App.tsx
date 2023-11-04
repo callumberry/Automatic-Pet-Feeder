@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
-import SliderComponent from './components/slider/slider.tsx';
+import PortionSliderComponent from './components/slider/portionSlider.tsx';
+import TimeSliderComponent from './components/slider/timeSlider.tsx';
+import { LedButton } from './components/testing/ledButton.tsx';
+
 
 
 
@@ -30,9 +33,19 @@ function App() {
 
   return (
     <>
-    <p>Data from Flask:</p>
-    <pre>{JSON.stringify(data, null, 2)}</pre>
-    <SliderComponent />  
+     {data !== null ? (
+        <div>
+          <LedButton />
+          <PortionSliderComponent /> 
+          <TimeSliderComponent /> 
+        </div>
+      ) : (
+        <div>
+          <p>Data from Flask</p>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+          <p>please refresh the page</p>
+        </div>
+      )}
     </>
   )
 }

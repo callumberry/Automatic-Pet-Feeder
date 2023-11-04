@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       //change ip to current ip address
-      '/api': 'http://192.168.2.46:5000' // Proxy requests to your Flask backend
+      '/api': 'http://192.168.2.113:5000' // Proxy requests to your Flask backend
     },
   },
 })
