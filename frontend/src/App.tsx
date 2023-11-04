@@ -35,8 +35,8 @@ function App() {
     <>
      {data !== null ? (
         <div>
-          <PortionSliderComponent /> 
           <LedButton />
+          <PortionSliderComponent /> 
           <TimeSliderComponent /> 
         </div>
       ) : (

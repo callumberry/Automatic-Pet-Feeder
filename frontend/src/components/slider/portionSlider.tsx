@@ -59,7 +59,7 @@ const SliderComponent = () => {
     <div>
       
       <Box sx={{ width: 800 }}>
-        <h1>Slider Test</h1>
+        <h1>Portion Slider</h1>
         <Slider
           value={sliderValue} // Use the state variable as the value
           onChange={handleSliderChange} //

@@ -107,6 +107,7 @@ export default function MinimumDistanceSlider() {
 
   return (
     <Box sx={{ width: 800 }}>
+      <h1>Time Slider</h1>
       <Slider
         getAriaLabel={() => 'Minimum distance shift'}
         value={value1}
