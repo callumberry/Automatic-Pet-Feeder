@@ -49,8 +49,9 @@ const SliderComponent = () => {
 
   return (
     <div>
-      <h1>Slider Test</h1>
+      
       <Box sx={{ width: 300 }}>
+        <h1>Slider Test</h1>
         <Slider
           value={sliderValue} // Use the state variable as the value
           onChange={handleSliderChange} //
@@ -67,10 +68,11 @@ const SliderComponent = () => {
           }}
           //color="primary"
         />
+        <button onClick={handleFeedClick}>Feed {sliderValue} portions</button>
+        <p>Fed {feedCount} times</p> {/* Display the number of times fed */}
+        <p>Fed {portionCount} portions</p> {/* Display the number of times fed */}
       </Box>
-      <button onClick={handleFeedClick}>Feed {sliderValue} portions</button>
-      <p>Fed {feedCount} times</p> {/* Display the number of times fed */}
-      <p>Fed {portionCount} portions</p> {/* Display the number of times fed */}
+  
     </div>
     
   );
