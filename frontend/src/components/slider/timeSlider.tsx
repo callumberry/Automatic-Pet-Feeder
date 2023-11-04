@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { ScheduleButton } from '../testing/setScheduleButton.tsx'; 
 
 const marks = [
     {
@@ -81,7 +82,13 @@ const minVal = 5
 const maxVal = 22
 
 export default function MinimumDistanceSlider() {
-  const [value1, setValue1] = React.useState<number[]>([7, 8]);
+  const [value1, setValue1] = React.useState<number[]>([6, 18]);
+  
+  const handleScheduleClick = () => {
+    // Update feedCount and portionCount when Servo On is clicked
+   
+  };
+
 
   const handleChange1 = (
     event: Event,
@@ -104,6 +111,8 @@ export default function MinimumDistanceSlider() {
       setValue1(newValue as number[]);
     }
   };
+
+
 
   return (
     <Box sx={{ width: 800 }}>
@@ -128,6 +137,11 @@ export default function MinimumDistanceSlider() {
         <br />
         Right Thumb Value: {value1[1]}
       </div>
+      <ScheduleButton
+        leftValue={value1[0]}
+        rightValue={value1[1]}
+        onScheduleClick={handleScheduleClick}
+      />
     </Box>
   );
 }

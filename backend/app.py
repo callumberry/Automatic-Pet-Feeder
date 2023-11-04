@@ -28,7 +28,13 @@ def perform_servo_action():
         #move_servo_min_to_max()
         print("Servo Moved")
 
-    return jsonify({'message': f'Servo Positioned {repeat} times'})
+    return jsonify({'message': f'Servo Positioned {repeat} times'})\
+
+@app.route('/api/schedule-action', methods=['GET'])
+def perform_schedule_action():
+    #toggle_led()
+    print("Schedule Set")
+    return jsonify({'message': 'Schedule'})
 
 if __name__ == '__main__':
     app.run(debug=True)
