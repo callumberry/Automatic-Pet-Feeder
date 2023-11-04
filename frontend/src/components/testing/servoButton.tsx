@@ -37,7 +37,7 @@ interface ServoButtonProps {
   
 	return (
 	  <div>
-		<button onClick={handleButtonClick} disabled={isServoMoving}>Servo On</button>
+		<button onClick={handleButtonClick} disabled={isServoMoving}>FEED (servo)</button>
 	  </div>
 	);
   };
