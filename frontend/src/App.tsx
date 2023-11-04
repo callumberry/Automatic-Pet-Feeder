@@ -31,10 +31,18 @@ function App() {
 
   return (
     <>
-    <p>Data from Flask:</p>
-    <pre>{JSON.stringify(data, null, 2)}</pre>
-    <SliderComponent /> 
-    <LedButton />
+     {data !== null ? (
+        <div>
+          <SliderComponent /> 
+          <LedButton />
+        </div>
+      ) : (
+        <div>
+          <p>Data from Flask</p>
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+          <p>please refresh the page</p>
+        </div>
+      )}
     </>
   )
 }
