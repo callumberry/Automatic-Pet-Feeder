@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
 import SliderComponent from './components/slider/slider.tsx';
-
+import { LedButton } from './components/testing/ledButton.tsx';
+import { ServoButton } from './components/testing/servoButton.tsx';
 
 
 function App() {
@@ -32,7 +33,9 @@ function App() {
     <>
     <p>Data from Flask:</p>
     <pre>{JSON.stringify(data, null, 2)}</pre>
-    <SliderComponent />  
+    <SliderComponent /> 
+    <LedButton />
+    <ServoButton/>
     </>
   )
 }
