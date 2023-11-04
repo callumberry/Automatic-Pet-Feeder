@@ -1,21 +1,21 @@
 import React from 'react';
 interface ScheduleButtonProps {
-    feedFirst: string;
-    feedSecond: string;
+    firstFeedLabel: string;
+    secondFeedLabel: string;
     onScheduleClick: () => void;
   }
   
-  export const ScheduleButton: React.FC<ScheduleButtonProps> = ({ feedFirst, feedSecond, onScheduleClick }) => {
+  export const ScheduleButton: React.FC<ScheduleButtonProps> = ({ firstFeedLabel, secondFeedLabel, onScheduleClick }) => {
 
 	const handleButtonClick = () => {
 	
 	  // Send a GET request to the backend when the button is clicked
-	  fetch(`/api/schedule-action?timeOne=${feedFirst}&timeTwo=${feedSecond}`, {
+	  fetch(`/api/schedule-action?timeOne=${firstFeedLabel}&timeTwo=${secondFeedLabel}`, {
 		method: 'GET',
 	  })
 		.then((response) => {
 		  if (response.ok) {
-			console.log('Backend action was triggered successfully.');
+			console.log('Backend action was triggered successfully.', firstFeedLabel, secondFeedLabel);
             onScheduleClick()
 			
 		} else {
@@ -29,7 +29,7 @@ interface ScheduleButtonProps {
   
 	return (
 	  <div>
-		<button onClick={handleButtonClick}>Set Schedule</button>
+		<button onClick={handleButtonClick}>Set Schedule {firstFeedLabel} {secondFeedLabel}</button>
 	  </div>
 	);
   };
