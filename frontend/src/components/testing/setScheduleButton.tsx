@@ -1,16 +1,16 @@
 import React from 'react';
 interface ScheduleButtonProps {
-    feedFirst: string;
-    feedSecond: string;
+    firstFeed: string;
+    secondFeed: string;
     onScheduleClick: () => void;
   }
   
-  export const ScheduleButton: React.FC<ScheduleButtonProps> = ({ feedFirst, feedSecond, onScheduleClick }) => {
+  export const ScheduleButton: React.FC<ScheduleButtonProps> = ({ firstFeed, secondFeed, onScheduleClick }) => {
 
 	const handleButtonClick = () => {
 	
 	  // Send a GET request to the backend when the button is clicked
-	  fetch(`/api/schedule-action?timeOne=${feedFirst}&timeTwo=${feedSecond}`, {
+	  fetch(`/api/schedule-action?timeOne=${firstFeed}&timeTwo=${secondFeed}`, {
 		method: 'GET',
 	  })
 		.then((response) => {

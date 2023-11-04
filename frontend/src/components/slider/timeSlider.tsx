@@ -140,8 +140,8 @@ export default function MinimumDistanceSlider() {
           }}
       />
       <ScheduleButton
-        feedFirst={firstFeed}
-        feedSecond={secondFeed}
+        firstFeed={firstFeed}
+        secondFeed={secondFeed}
         onScheduleClick={handleScheduleClick}
       />
        <div>
