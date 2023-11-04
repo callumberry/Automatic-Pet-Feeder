@@ -1,7 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-
-from time import sleep
+from flask import request
 
 from ledControl import toggle_led
 from servoControl import move_servo_min_to_max
@@ -23,9 +22,14 @@ def perform_backend_action():
 
 @app.route('/api/servo-action', methods=['GET'])
 def perform_servo_action():
-    move_servo_min_to_max()
-    print("Servo Moved")
-    return jsonify({'message': 'Servo Positioned'})
+    repeat = request.args.get('repeat', default=1, type=int)
+
+    # Perform the servo action 'repeat' times based on the sliderValue
+    for _ in range(repeat):
+        move_servo_min_to_max()
+        print("Servo Moved")
+
+    return jsonify({'message': f'Servo Positioned {repeat} times'})
 
 if __name__ == '__main__':
     app.run(debug=True)
