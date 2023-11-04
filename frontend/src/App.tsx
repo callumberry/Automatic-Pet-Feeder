@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'
-import SliderComponent from './components/slider/slider.tsx';
+import PortionSliderComponent from './components/slider/portionSlider.tsx';
 import { LedButton } from './components/testing/ledButton.tsx';
+import SelectComponent from './components/select/select.tsx';
 
 
 
@@ -33,8 +34,9 @@ function App() {
     <>
      {data !== null ? (
         <div>
-          <SliderComponent /> 
+          <PortionSliderComponent /> 
           <LedButton />
+          <SelectComponent/>
         </div>
       ) : (
         <div>
