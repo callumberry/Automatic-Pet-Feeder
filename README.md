@@ -19,7 +19,7 @@
     - can get ip by running ifconfig
     - or run backend 
 
-## GPIO Control
+## GPIO Control (raspi-dev only)
 - Run command in terminal outside of virtual environment and inside later on
     - sudo apt install python3-gpiozero
     - sudo apt install python3-RPi.GPIO
