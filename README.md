@@ -4,6 +4,7 @@
 
 ### calllum, callan, and luke
 - do you testing to not mess up dev and main
+- merge from dev or main
 ### pc-dev
 - for frontend, doesn't include GPIO
 - once personal branch is testing merge with this
