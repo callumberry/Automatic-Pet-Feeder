@@ -19,7 +19,7 @@
     - sudo /home/pi/Desktop/feed/server/venv/bin/flask run --host=0.0.0.0 <----for pi
     /home/tardis/Desktop/ts-website/backend/venv  <------- only for me (Callum)
 
-## Material UI for React
+## Material UI for React (might not be required)
 - npm install @mui/material @emotion/react @emotion/styled
 
 # Frontend/Client
