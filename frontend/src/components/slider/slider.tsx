@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { ServoButton }from '/home/pi/Desktop/MREN318-FEED/frontend/src/components/testing/servoButton.tsx'; 
+import { ServoButton }from '../testing/servoButton.tsx'; 
 //import Slider from '@mui/material-next/Slider';
 
 const marks = [
