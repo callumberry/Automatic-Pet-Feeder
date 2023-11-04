@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { ServoButton }from '/home/pi/Desktop/MREN318-FEED/frontend/src/components/testing/servoButton.tsx'; 
 //import Slider from '@mui/material-next/Slider';
 
 const marks = [
@@ -35,6 +36,8 @@ const SliderComponent = () => {
   const [feedCount, setFeedCount] = useState(0); 
   const [portionCount, setPortionCount] = useState(0); 
 
+  
+
   // Function to handle slider value changes
   const handleSliderChange = (_event: Event, newValue: number | number[]) => {
     if (typeof newValue === "number") {
@@ -42,9 +45,14 @@ const SliderComponent = () => {
     }
   
   };
-  const handleFeedClick = () => {
+  //const handleFeedClick = () => {
+  //  setFeedCount(feedCount + 1);
+  //  setPortionCount(portionCount + sliderValue)
+  //};
+  const handleServoClick = () => {
+    // Update feedCount and portionCount when Servo On is clicked
     setFeedCount(feedCount + 1);
-    setPortionCount(portionCount + sliderValue)
+    setPortionCount(portionCount + sliderValue);
   };
 
   return (
@@ -68,9 +76,9 @@ const SliderComponent = () => {
           }}
           //color="primary"
         />
-        <button onClick={handleFeedClick}>Feed {sliderValue} portions</button>
         <p>Fed {feedCount} times</p> {/* Display the number of times fed */}
         <p>Fed {portionCount} portions</p> {/* Display the number of times fed */}
+        <ServoButton sliderValue={sliderValue} onServoClick={handleServoClick} />
       </Box>
   
     </div>
