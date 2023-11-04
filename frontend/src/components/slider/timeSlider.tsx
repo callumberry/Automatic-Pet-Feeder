@@ -7,23 +7,23 @@ import { ScheduleButton } from '../testing/setScheduleButton.tsx';
 const marks = [
     {
       value: 5,
-      label: '5:00',
+      label: '05:00',
     },
     {
       value: 6,
-      label: '6:00',
+      label: '06:00',
     },
     {
       value: 7,
-      label: '7:00',
+      label: '07:00',
     },
     {
       value: 8,
-      label: '8:00',
+      label: '08:00',
     },
     {
       value: 9,
-      label: '9:00',
+      label: '09:00',
     },
     {
       value: 10,
@@ -84,13 +84,16 @@ const maxVal = 22
 
 export default function MinimumDistanceSlider() {
   const [value1, setValue1] = React.useState<number[]>([7, 18]);
-  const [firstFeed, setFirstFeed] = useState(7); 
-  const [secondFeed, setSecondFeed] = useState(18); 
+  const [firstFeed, setFirstFeed] = useState<string>('07:00');; 
+  const [secondFeed, setSecondFeed] = useState<string>('18:00'); 
 
   const handleScheduleClick = () => {
-    // Update feedCount and portionCount when Servo On is clicked
-    setFirstFeed(value1[0])
-    setSecondFeed(value1[1])
+    const firstFeedLabel = marks.find((mark) => mark.value === value1[0])?.label || '';
+    const secondFeedLabel = marks.find((mark) => mark.value === value1[1])?.label || '';
+  
+    // Update feedCount and portionCount with labels
+    setFirstFeed(firstFeedLabel);
+    setSecondFeed(secondFeedLabel);
   };
 
 

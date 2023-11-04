@@ -1,7 +1,7 @@
 import React from 'react';
 interface ScheduleButtonProps {
-    feedFirst: number;
-    feedSecond: number;
+    feedFirst: string;
+    feedSecond: string;
     onScheduleClick: () => void;
   }
   
