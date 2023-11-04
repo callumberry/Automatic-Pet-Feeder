@@ -1,11 +1,11 @@
 import React from 'react';
 interface ScheduleButtonProps {
-    leftValue: number;
-    rightValue: number;
+    feedFirst: number;
+    feedSecond: number;
     onScheduleClick: () => void;
   }
   
-  export const ScheduleButton: React.FC<ScheduleButtonProps> = ({ leftValue, rightValue, onScheduleClick }) => {
+  export const ScheduleButton: React.FC<ScheduleButtonProps> = ({ feedFirst, feedSecond, onScheduleClick }) => {
 
 	const handleButtonClick = () => {
 	
@@ -29,7 +29,7 @@ interface ScheduleButtonProps {
   
 	return (
 	  <div>
-		<button onClick={handleButtonClick}>Set Schedule {leftValue} {rightValue}</button>
+		<button onClick={handleButtonClick}>Set Schedule {feedFirst} {feedSecond}</button>
 	  </div>
 	);
   };
