@@ -76,9 +76,13 @@ const SliderComponent = () => {
           }}
           //color="primary"
         />
-        <p>Fed {feedCount} times</p> {/* Display the number of times fed */}
-        <p>Fed {portionCount} portions</p> {/* Display the number of times fed */}
+        <div>
         <ServoButton sliderValue={sliderValue} onServoClick={handleServoClick} />
+        Fed {feedCount} times
+        <br/>
+        Fed {portionCount} portions
+        </div> 
+        
       </Box>
   
     </div>

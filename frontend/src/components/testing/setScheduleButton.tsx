@@ -10,7 +10,7 @@ interface ScheduleButtonProps {
 	const handleButtonClick = () => {
 	
 	  // Send a GET request to the backend when the button is clicked
-	  fetch(`/api/schedule-action`, {
+	  fetch(`/api/schedule-action?timeOne=${feedFirst}&timeTwo=${feedSecond}`, {
 		method: 'GET',
 	  })
 		.then((response) => {
@@ -29,7 +29,7 @@ interface ScheduleButtonProps {
   
 	return (
 	  <div>
-		<button onClick={handleButtonClick}>Set Schedule {feedFirst} {feedSecond}</button>
+		<button onClick={handleButtonClick}>Set Schedule</button>
 	  </div>
 	);
   };

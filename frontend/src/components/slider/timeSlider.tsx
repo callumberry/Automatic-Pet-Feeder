@@ -83,8 +83,8 @@ const minVal = 5
 const maxVal = 22
 
 export default function MinimumDistanceSlider() {
-  const [value1, setValue1] = React.useState<number[]>([6, 18]);
-  const [firstFeed, setFirstFeed] = useState(6); 
+  const [value1, setValue1] = React.useState<number[]>([7, 18]);
+  const [firstFeed, setFirstFeed] = useState(7); 
   const [secondFeed, setSecondFeed] = useState(18); 
 
   const handleScheduleClick = () => {
@@ -136,16 +136,16 @@ export default function MinimumDistanceSlider() {
             },
           }}
       />
-       <div>
-        Left Thumb Value: {firstFeed}
-        <br />
-        Right Thumb Value: {secondFeed}
-      </div>
       <ScheduleButton
         feedFirst={firstFeed}
         feedSecond={secondFeed}
         onScheduleClick={handleScheduleClick}
       />
+       <div>
+        First Feed Time: {firstFeed}
+        <br />
+        Second Feed Time: {secondFeed}
+      </div>
     </Box>
   );
 }

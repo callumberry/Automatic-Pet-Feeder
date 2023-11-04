@@ -32,8 +32,12 @@ def perform_servo_action():
 
 @app.route('/api/schedule-action', methods=['GET'])
 def perform_schedule_action():
+    timeOne = request.args.get('timeOne', type=int)
+    timeTwo = request.args.get('timeTwo', type=int)
     #toggle_led()
     print("Schedule Set")
+    print(timeOne)
+    print(timeTwo)
     return jsonify({'message': 'Schedule'})
 
 if __name__ == '__main__':
