@@ -7,7 +7,7 @@ import { ScheduleButton } from '../testing/setScheduleButton.tsx';
 const marks = [
     {
       value: 5,
-      label: '11:37',
+      label: '11:47',
     },
     {
       value: 6,
