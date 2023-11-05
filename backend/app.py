@@ -8,6 +8,7 @@ from ledControl import toggle_led
 from servoControl import move_servo_min_to_max
 timeOne = None
 timeTwo = None
+portions = 1
 app = Flask(__name__)
 CORS(app)
 
@@ -43,14 +44,23 @@ def perform_backend_action():
 
 @app.route('/api/servo-action', methods=['GET'])
 def perform_servo_action():
-    repeat = request.args.get('repeat', default=1, type=int)
-
+    global portions
+    repeat = portions
+    print(repeat)
     # Perform the servo action 'repeat' times based on the sliderValue
     for _ in range(repeat):
         move_servo_min_to_max()
         print("Servo Moved")
 
     return jsonify({'message': f'Servo Positioned {repeat} times'})\
+
+@app.route('/api/portion-action', methods=['GET'])
+def perform_portion_action():
+    global portions
+    portions = request.args.get('portions', default=1, type=int)
+    print("Portions", portions)
+
+    return jsonify({'message': f'Portions: {portions}'})\
 
 @app.route('/api/schedule-action', methods=['GET'])
 def perform_schedule_action():
@@ -65,11 +75,16 @@ def perform_schedule_action():
 
 def schedule_job():
     current_time = get_current_time()
-    #print("schedule tesat")
+    print("schedule tesat")
     print("Current Time:", current_time, " timeOne:", timeOne," timeTwo:", timeTwo)
 
     if current_time == timeOne or current_time == timeTwo:
-        move_servo_min_to_max()
+        repeat = portions
+        print(repeat)
+        # Perform the servo action 'repeat' times based on the sliderValue
+        for _ in range(repeat):
+            move_servo_min_to_max()
+            print("Servo Moved")
         print("Performing scheduled action at", current_time)
     else:
         print("No action performed", current_time)

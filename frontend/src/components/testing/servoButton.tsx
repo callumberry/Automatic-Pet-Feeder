@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 interface ServoButtonProps {
-  sliderValue: number;
   onServoClick: () => void; // Define onServoClick as a function with no arguments and no return value
 }
   
-  export const ServoButton: React.FC<ServoButtonProps> = ({ sliderValue, onServoClick }) => {
+  export const ServoButton: React.FC<ServoButtonProps> = ({ onServoClick }) => {
 	const [isServoMoving, setIsServoMoving] = useState(false);
 
 	const handleButtonClick = () => {
@@ -16,7 +15,7 @@ interface ServoButtonProps {
 		
 	
 	  // Send a GET request to the backend when the button is clicked
-	  fetch(`/api/servo-action?repeat=${sliderValue}`, {
+	  fetch(`/api/servo-action`, {
 		method: 'GET',
 	  })
 		.then((response) => {
@@ -37,7 +36,7 @@ interface ServoButtonProps {
   
 	return (
 	  <div>
-		<button onClick={handleButtonClick} disabled={isServoMoving}>FEED (servo) {sliderValue}</button>
+		<button onClick={handleButtonClick} disabled={isServoMoving}>manual feed (set portion first)</button>
 	  </div>
 	);
   };

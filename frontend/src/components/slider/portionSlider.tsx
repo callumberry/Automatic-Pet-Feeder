@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { ServoButton }from '../testing/servoButton.tsx'; 
+import { PortionButton }from '../testing/setPortionButton.tsx'; 
 //import Slider from '@mui/material-next/Slider';
 
 const marks = [
@@ -55,6 +56,11 @@ const SliderComponent = () => {
     setPortionCount(portionCount + sliderValue);
   };
 
+  const handlePortionClick = () => {
+    // Update feedCount and portionCount when Servo On is clicked
+    setFeedCount(feedCount + 1);
+    setPortionCount(portionCount + sliderValue);
+  };
   return (
     <div>
       
@@ -77,7 +83,8 @@ const SliderComponent = () => {
           //color="primary"
         />
         <div>
-        <ServoButton sliderValue={sliderValue} onServoClick={handleServoClick} />
+        <PortionButton sliderValue={sliderValue} onPortionClick={handlePortionClick} />
+        <ServoButton onServoClick={handleServoClick} />
         Fed {feedCount} times
         <br/>
         Fed {portionCount} portions
