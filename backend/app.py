@@ -4,8 +4,9 @@ from flask import request
 import ntplib
 from time import ctime
 from apscheduler.schedulers.background import BackgroundScheduler
-#from ledControl import toggle_led
-#from servoControl import move_servo_min_to_max
+from ledControl import toggle_led
+from servoControl import move_servo_min_to_max
+from stepper import move_stepper_motor
 timeOne = None
 timeTwo = None
 portions = 1
@@ -38,7 +39,7 @@ def get_data():
 
 @app.route('/api/backend-action', methods=['GET'])
 def perform_backend_action():
-    #toggle_led()
+    toggle_led()
     print("LED is ON")
     return jsonify({'message': 'Led toggled'})
 
@@ -49,7 +50,8 @@ def perform_servo_action():
     print(repeat)
     # Perform the servo action 'repeat' times based on the sliderValue
     for _ in range(repeat):
-        #move_servo_min_to_max()
+        move_servo_min_to_max()
+        move_stepper_motor()
         print("Servo Moved")
 
     return jsonify({'message': f'Servo Positioned {repeat} times'})\
@@ -83,7 +85,8 @@ def schedule_job():
         print(repeat)
         # Perform the servo action 'repeat' times based on the sliderValue
         for _ in range(repeat):
-            #move_servo_min_to_max()
+            move_servo_min_to_max()
+            move_stepper_motor()
             print("Servo Moved")
         print("Performing scheduled action at", current_time)
     else:
