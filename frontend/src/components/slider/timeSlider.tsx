@@ -2,12 +2,12 @@ import * as React from 'react';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { ScheduleButton } from '../testing/setScheduleButton.tsx'; 
+import { ScheduleButton } from '../buttons/setScheduleButton.tsx'; 
 
 const marks = [
     {
       value: 5,
-      label: '22:44',
+      label: '01:08',
     },
     {
       value: 6,
