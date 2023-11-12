@@ -5,7 +5,7 @@ import ntplib
 from time import ctime
 from apscheduler.schedulers.background import BackgroundScheduler
 #from hardware import move_servo_min_to_max, toggle_led, move_stepper_motor
-
+from flask_socketio import SocketIO
 
 
 timeOne = None
@@ -14,7 +14,16 @@ portions = 1
 
 app = Flask(__name__)
 CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.46:5173", path='/socket.io')
 
+#testing
+#@socketio.on('info_from_client')
+#def handle_info(data):
+#    print(f"Received information from React: {data}")
+
+    # Send a response back to React
+ #   socketio.emit('message_to_client', 'Information received by Flask!')
+    
 
 def get_current_time():
     c = ntplib.NTPClient()
@@ -42,6 +51,7 @@ def get_data():
 @app.route('/api/backend-action', methods=['GET'])
 def perform_backend_action():
     #toggle_led()
+    
     print("LED Toggled")
     return jsonify({'message': 'Led toggled'})
 
@@ -85,6 +95,8 @@ def schedule_job():
     current_time = get_current_time()
     print("schedule tesat")
     print("Current Time:", current_time, " timeOne:", timeOne," timeTwo:", timeTwo)
+    
+    
 
     if current_time == timeOne or current_time == timeTwo:
         repeat = portions
@@ -94,7 +106,13 @@ def schedule_job():
             #move_servo_min_to_max()
             #move_stepper_motor()
             print("Servo Moved")
+     
+
+       
+
+        socketio.emit('message_to_client', repeat)
         print("Performing scheduled action at", current_time)
+
 
     else:
         print("No action performed", current_time)
@@ -103,4 +121,4 @@ def schedule_job():
 scheduler.add_job(schedule_job, 'interval', minutes=1)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    socketio.run(app)
