@@ -17,9 +17,20 @@ import AnnualReport from "./pages/annual.tsx";
 import Teams from "./pages/team.tsx";
 import SignUp from "./pages/signIn.tsx";
 
-
 function App() {
   const [data, setData] = useState(null);
+
+  
+
+  useEffect(() => {
+    const requestNotificationPermission = async () => {
+      if ('Notification' in window) {
+        await Notification.requestPermission();
+      }
+    };
+
+    requestNotificationPermission();
+  }, []);
 
   useEffect(() => {
     // Define a function to fetch data from your Flask backend
@@ -40,6 +51,8 @@ function App() {
     // Call the fetchData function when the component mounts
     fetchData();
   }, []); // The empty array means this effect runs once after the initial render
+
+
 
 //why is nav bar only there is backend is disconnected?
   return (

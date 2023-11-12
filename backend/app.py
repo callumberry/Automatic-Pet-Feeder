@@ -4,7 +4,8 @@ from flask import request
 import ntplib
 from time import ctime
 from apscheduler.schedulers.background import BackgroundScheduler
-from hardware import move_servo_min_to_max, toggle_led, move_stepper_motor
+#from hardware import move_servo_min_to_max, toggle_led, move_stepper_motor
+
 
 
 timeOne = None
@@ -13,6 +14,7 @@ portions = 1
 
 app = Flask(__name__)
 CORS(app)
+
 
 def get_current_time():
     c = ntplib.NTPClient()
@@ -35,12 +37,11 @@ scheduler.start()
 @app.route('/api/data', methods=['GET'])
 def get_data():
     data = {'message': 'This is the data you requested'}
-     
     return data
 
 @app.route('/api/backend-action', methods=['GET'])
 def perform_backend_action():
-    toggle_led()
+    #toggle_led()
     print("LED Toggled")
     return jsonify({'message': 'Led toggled'})
 
@@ -51,7 +52,7 @@ def perform_servo_action():
     print(repeat)
     # Perform the servo action 'repeat' times based on the sliderValue
     for _ in range(repeat):
-        move_servo_min_to_max()
+        #move_servo_min_to_max()
         #move_stepper_motor()
         print("Servo Moved")
 
@@ -90,10 +91,11 @@ def schedule_job():
         print(repeat)
         # Perform the servo action 'repeat' times based on the sliderValue
         for _ in range(repeat):
-            move_servo_min_to_max()
+            #move_servo_min_to_max()
             #move_stepper_motor()
             print("Servo Moved")
         print("Performing scheduled action at", current_time)
+
     else:
         print("No action performed", current_time)
 
