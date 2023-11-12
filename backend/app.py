@@ -4,7 +4,7 @@ from flask import request
 import ntplib
 from time import ctime
 from apscheduler.schedulers.background import BackgroundScheduler
-#from hardware import move_servo_min_to_max, toggle_led, move_stepper_motor
+from hardware import move_servo_min_to_max, toggle_led, move_stepper_motor
 from flask_socketio import SocketIO
 
 
@@ -50,7 +50,7 @@ def get_data():
 
 @app.route('/api/backend-action', methods=['GET'])
 def perform_backend_action():
-    #toggle_led()
+    toggle_led()
     print("LED is ON")
     return jsonify({'message': 'Led toggled'})
 
@@ -61,7 +61,7 @@ def perform_servo_action():
     print(repeat)
     # Perform the servo action 'repeat' times based on the sliderValue
     for _ in range(repeat):
-        #move_servo_min_to_max()
+        move_servo_min_to_max()
         print("Servo Moved")
 
     return jsonify({'message': f'Servo Positioned {repeat} times'})\
@@ -71,6 +71,9 @@ def perform_portion_action():
     global portions
     portions = request.args.get('portions', default=1, type=int)
     print("Portions", portions)
+
+    with open("./data/encoderData.txt", "w") as file:
+                    file.write(str(portions))
 
     return jsonify({'message': f'Portions: {portions}'})\
 
@@ -101,7 +104,7 @@ def schedule_job():
         print(repeat)
         # Perform the servo action 'repeat' times based on the sliderValue
         for _ in range(repeat):
-            #move_servo_min_to_max()
+            move_servo_min_to_max()
             print("Servo Moved")
      
 

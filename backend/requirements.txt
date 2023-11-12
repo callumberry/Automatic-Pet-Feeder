@@ -4,3 +4,4 @@ ntplib
 apscheduler
 gpiozero
 RPi.GPIO
+flask-socketio
