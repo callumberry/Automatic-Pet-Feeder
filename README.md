@@ -1,5 +1,8 @@
 # Feed 
 
+# Luke 
+ - everything is murged but backend hardware file didnt want to merge cause i cant test
+
 ## Branch Explanation
 
 ### calllum, callan, and luke

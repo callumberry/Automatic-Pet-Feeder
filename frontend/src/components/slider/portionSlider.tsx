@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { ServoButton }from '../testing/servoButton.tsx'; 
-import { PortionButton }from '../testing/setPortionButton.tsx'; 
+import { ServoButton }from '../buttons/servoButton.tsx'; 
+import { PortionButton }from '../buttons/setPortionButton.tsx'; 
 //import Slider from '@mui/material-next/Slider';
 
 const marks = [
