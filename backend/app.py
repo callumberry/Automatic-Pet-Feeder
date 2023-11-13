@@ -14,7 +14,7 @@ portions = 1
 
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="http://pi:5173", path='/socket.io')
+socketio = SocketIO(app, cors_allowed_origins="http://ipToReplace:5173", path='/socket.io')
 
 #testing
 #@socketio.on('info_from_client')
@@ -89,7 +89,7 @@ def perform_schedule_action():
     print("timeOne:", timeOne," timeTwo:", timeTwo)
 
     with open("./data/feedTimes.txt", "w") as file:
-        file.write(f"{timeOne}, {timeTwo}")
+        file.write(f"{timeOne},{timeTwo}")
     
     
     return jsonify({'message': 'Schedule'})
@@ -98,6 +98,7 @@ def schedule_job():
     current_time = get_current_time()
     print("schedule tesat")
     print("Current Time:", current_time, " timeOne:", timeOne," timeTwo:", timeTwo)
+
     
     with open("./data/ultrasonicData.txt", "r", encoding='UTF-8') as file:
         containerInfo = file.read()
@@ -106,6 +107,11 @@ def schedule_job():
     with open("./data/feedTimes.txt", "r", encoding='UTF-8') as file:
         feedTimes = file.read().split(',')
     socketio.emit('feed_times', feedTimes)
+
+    with open("./data/encoderData.txt", "r", encoding='UTF-8') as file:
+        feedTimes = file.read()
+    socketio.emit('portion_data', feedTimes)
+
 
     if current_time == timeOne or current_time == timeTwo:
         # Perform the servo action 'portions' times based on the sliderValue

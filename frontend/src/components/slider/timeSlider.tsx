@@ -6,10 +6,10 @@ import { ScheduleButton } from '../buttons/setScheduleButton.tsx';
 
 import io from 'socket.io-client';
 
-const socket = io('http://pi:5000', {
+const socket = io('http://ipToReplace:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://pi:5000"
+    "Access-Control-Allow-Origin": "http://ipToReplace:5000"
   }
 });
 
