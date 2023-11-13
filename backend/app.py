@@ -15,7 +15,7 @@ portions = 1
 
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.46:5173", path='/socket.io')
+socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.113:5173", path='/socket.io')
 
 #testing
 #@socketio.on('info_from_client')

@@ -19,7 +19,7 @@ import SignUp from "./pages/signIn.tsx";
 
 import io from 'socket.io-client';
 
-const socket = io('http://192.168.2.46:5000', {
+const socket = io('http://192.168.2.113:5000', {
   transports: ['websocket', 'polling'],
   path: '/socket.io',
 });
