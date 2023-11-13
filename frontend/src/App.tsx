@@ -19,9 +19,11 @@ import SignUp from "./pages/signIn.tsx";
 
 import io from 'socket.io-client';
 
-const socket = io('http://192.168.2.46:5000', {
-  transports: ['websocket', 'polling'],
-  path: '/socket.io',
+const socket = io('http://ip:5000', {
+  withCredentials: true,
+  extraHeaders: {
+    "Access-Control-Allow-Origin": "http://ip:5000"
+  }
 });
 
 function App() {
@@ -53,9 +55,19 @@ function App() {
     
     // Listen for messages from Flask
     socket.on('message_to_client', (data: string) => {
-      
-
       console.log('Received message from Flask:', data);
+      setMessageFromFlask(data);
+      showNotification(data)
+    });
+
+    socket.on('container_data', (data: string) => {
+      console.log(data);
+      setMessageFromFlask(data);
+      showNotification(data)
+    });
+
+    socket.on('feed_times', (data: string) => {
+      console.log(data);
       setMessageFromFlask(data);
       showNotification(data)
     });
@@ -71,6 +83,7 @@ function App() {
   
     return () => {
       socket.off('message_to_client');
+      // socket.off('container_data');
       socket.off('connect');
       socket.off('disconnect');
     };
