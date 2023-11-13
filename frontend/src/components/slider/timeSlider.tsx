@@ -4,6 +4,15 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { ScheduleButton } from '../buttons/setScheduleButton.tsx'; 
 
+import io from 'socket.io-client';
+
+const socket = io('http://pi:5000', {
+  withCredentials: true,
+  extraHeaders: {
+    "Access-Control-Allow-Origin": "http://pi:5000"
+  }
+});
+
 const marks = [
     {
       value: 5,
@@ -126,6 +135,12 @@ export default function MinimumDistanceSlider() {
     //setFirstFeed(firstFeedLabel);
     //setSecondFeed(secondFeedLabel);
   };
+
+  socket.on('feed_times', (data: number[]) => {
+    // console.log(data[0])
+    setFirstFeed(String(data[0]))
+    setSecondFeed(String(data[1]))
+  });
 
 
 

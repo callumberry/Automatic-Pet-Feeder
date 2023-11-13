@@ -19,10 +19,10 @@ import SignUp from "./pages/signIn.tsx";
 
 import io from 'socket.io-client';
 
-const socket = io('http://ip:5000', {
+const socket = io('http://pi:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://ip:5000"
+    "Access-Control-Allow-Origin": "http://pi:5000"
   }
 });
 
@@ -56,19 +56,17 @@ function App() {
     // Listen for messages from Flask
     socket.on('message_to_client', (data: string) => {
       console.log('Received message from Flask:', data);
-      setMessageFromFlask(data);
       showNotification(data)
     });
 
     socket.on('container_data', (data: string) => {
       console.log(data);
-      setMessageFromFlask(data);
+      setMessageFromFlask(data)
       showNotification(data)
     });
 
     socket.on('feed_times', (data: string) => {
       console.log(data);
-      setMessageFromFlask(data);
       showNotification(data)
     });
 

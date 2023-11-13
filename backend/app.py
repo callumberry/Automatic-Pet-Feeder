@@ -14,7 +14,7 @@ portions = 1
 
 app = Flask(__name__)
 CORS(app)
-socketio = SocketIO(app, cors_allowed_origins="http://ip:5173", path='/socket.io')
+socketio = SocketIO(app, cors_allowed_origins="http://pi:5173", path='/socket.io')
 
 #testing
 #@socketio.on('info_from_client')
@@ -104,7 +104,7 @@ def schedule_job():
     socketio.emit('container_data', containerInfo)
 
     with open("./data/feedTimes.txt", "r", encoding='UTF-8') as file:
-        feedTimes = file.read()
+        feedTimes = file.read().split(',')
     socketio.emit('feed_times', feedTimes)
 
     if current_time == timeOne or current_time == timeTwo:
