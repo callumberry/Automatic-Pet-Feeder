@@ -1,7 +1,6 @@
 import RPi.GPIO as GPIO
 import time
 
-
 def tryGetEncoderData():
     GPIO.setmode(GPIO.BCM)
 
