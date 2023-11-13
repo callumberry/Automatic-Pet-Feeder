@@ -5,8 +5,9 @@ import ntplib
 from time import ctime
 from apscheduler.schedulers.background import BackgroundScheduler
 #from hardware import move_servo_min_to_max, toggle_led, move_stepper_motor
+from webcam import webcam
 from flask_socketio import SocketIO
-
+import threading
 
 timeOne = None
 timeTwo = None
@@ -23,7 +24,19 @@ socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.46:5173", path='
 
     # Send a response back to React
  #   socketio.emit('message_to_client', 'Information received by Flask!')
-    
+
+def run_webcam():
+    webcam(socketio)
+
+webcam_thread = threading.Thread(target=run_webcam)
+webcam_thread.start()
+
+@app.route('/video-feed', methods=['GET'])
+def video_feed():
+    #change this to video stream
+    data = {'message': 'Test'}
+    return data
+
 
 def get_current_time():
     c = ntplib.NTPClient()
@@ -121,4 +134,5 @@ def schedule_job():
 scheduler.add_job(schedule_job, 'interval', minutes=1)
 
 if __name__ == '__main__':
+ 
     socketio.run(app)

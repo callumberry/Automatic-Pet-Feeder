@@ -27,6 +27,7 @@ const socket = io('http://192.168.2.46:5000', {
 function App() {
   const [data, setData] = useState(null);
   const [messageFromFlask, setMessageFromFlask] = useState<string>('');
+  const [frame, setFrame] = useState('');
 
   useEffect(() => {
     const requestNotificationPermission = async () => {
@@ -50,7 +51,10 @@ function App() {
   useEffect(() => {
     //testing
     //socket.emit('info_from_client', 'Hello from React!');
-    
+    socket.on('frame', data => {
+      console.log('Got Frame');
+      setFrame(data.data);
+    });
     // Listen for messages from Flask
     socket.on('message_to_client', (data: string) => {
       
@@ -70,6 +74,7 @@ function App() {
     });
   
     return () => {
+      socket.off('frame');
       socket.off('message_to_client');
       socket.off('connect');
       socket.off('disconnect');
@@ -106,6 +111,7 @@ function App() {
      {data !== null ? (
         <div>
           <p>Message from Flask Websocket: {messageFromFlask}</p>
+          <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" />
           <LedButton />
           <PortionSliderComponent /> 
           <TimeSliderComponent /> 
