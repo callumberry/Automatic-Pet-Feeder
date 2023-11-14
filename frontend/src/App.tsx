@@ -66,7 +66,7 @@ function App() {
     });
 
     socket.on('feed_times', (data: string) => {
-      console.log(data);
+      // console.log(data);
       showNotification(data)
     });
 
@@ -109,6 +109,45 @@ function App() {
     fetchData();
   }, []); // The empty array means this effect runs once after the initial render
 
+  interface LinkStyle {
+    display: string;
+    color: string;
+    textAlign: 'center';
+    padding: string;
+    textDecoration: string;
+  }
+
+  const navbarStyle = {
+    overflow: 'hidden',
+    backgroundColor: '#333',
+    width: '100%', // Set width to 100%
+  };
+
+  const ulStyle = {
+    listStyleType: 'none',
+    margin: 0,
+    padding: 0,
+  };
+
+  const liStyle = {
+    float: 'left',
+  } as React.CSSProperties;
+
+  const linkStyle: LinkStyle = {
+    display: 'block',
+    color: 'white',
+    textAlign: 'center',
+    padding: '14px 16px',
+    textDecoration: 'none',
+  };
+
+  const activeLinkStyle = {
+    backgroundColor: '#04AA6D',
+  };
+
+  const hoverLinkStyle = {
+    backgroundColor: '#111',
+  };
 
 
 //why is nav bar only there is backend is disconnected?
@@ -116,6 +155,17 @@ function App() {
     <>
      {data !== null ? (
         <div>
+          <div className="navbar" style={navbarStyle}>
+            <ul style={ulStyle}>
+              <li style={liStyle}><a href="#home" style={linkStyle}>Home</a></li>
+              <li style={liStyle}><a href="#news" style={linkStyle}>News</a></li>
+              <li style={liStyle}><a href="#contact" style={linkStyle}>Contact</a></li>
+              <li style={{ ...liStyle, ...activeLinkStyle }}>
+                <a className="active" href="#about" style={{ ...linkStyle, ...activeLinkStyle }}>About</a>
+              </li>
+            </ul>
+          </div>
+
           <p>Message from Flask Websocket: {messageFromFlask}</p>
           <LedButton />
           <PortionSliderComponent /> 

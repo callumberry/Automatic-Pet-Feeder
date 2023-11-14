@@ -126,6 +126,7 @@ export default function MinimumDistanceSlider() {
         setValue1([clamped - minDistance, clamped]);
       }
     } else {
+      console.log(newValue)
       setValue1(newValue as number[]);
     }
     //const firstFeedLabel = marks.find((mark) => mark.value === value1[0])?.label || '';
@@ -137,7 +138,6 @@ export default function MinimumDistanceSlider() {
   };
 
   socket.on('feed_times', (data: number[]) => {
-    // console.log(data[0])
     setFirstFeed(String(data[0]))
     setSecondFeed(String(data[1]))
   });
