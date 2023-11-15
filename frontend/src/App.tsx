@@ -4,12 +4,12 @@ import PortionSliderComponent from './components/slider/portionSlider.tsx';
 import TimeSliderComponent from './components/slider/timeSlider.tsx';
 import { LedButton } from './components/buttons/ledButton.tsx';
 
-import Navbar from "./components/navbar/index.tsx";
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-} from "react-router-dom";
+import Navbar from './components/navbar.tsx';
+// import {
+//     BrowserRouter as Router,
+//     Routes,
+//     Route,
+// } from "react-router-dom";
 
 import Home from "./pages/home.tsx";
 import About from "./pages/about.tsx";
@@ -109,62 +109,14 @@ function App() {
     fetchData();
   }, []); // The empty array means this effect runs once after the initial render
 
-  interface LinkStyle {
-    display: string;
-    color: string;
-    textAlign: 'center';
-    padding: string;
-    textDecoration: string;
-  }
-
-  const navbarStyle = {
-    overflow: 'hidden',
-    backgroundColor: '#333',
-    width: '100%', // Set width to 100%
-  };
-
-  const ulStyle = {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
-  };
-
-  const liStyle = {
-    float: 'left',
-  } as React.CSSProperties;
-
-  const linkStyle: LinkStyle = {
-    display: 'block',
-    color: 'white',
-    textAlign: 'center',
-    padding: '14px 16px',
-    textDecoration: 'none',
-  };
-
-  const activeLinkStyle = {
-    backgroundColor: '#04AA6D',
-  };
-
-  const hoverLinkStyle = {
-    backgroundColor: '#111',
-  };
-
 
 //why is nav bar only there is backend is disconnected?
   return (
     <>
-     {data !== null ? (
+     {data !== null ? (   
+        
         <div>
-          <div className="navbar" style={navbarStyle}>
-            <ul style={ulStyle}>
-              <li style={liStyle}><a href="#home" style={linkStyle}>Home</a></li>
-              <li style={liStyle}><a href="#news" style={linkStyle}>News</a></li>
-              <li style={liStyle}><a href="#contact" style={linkStyle}>Contact</a></li>
-              <li style={{ ...liStyle, ...activeLinkStyle }}>
-                <a className="active" href="#about" style={{ ...linkStyle, ...activeLinkStyle }}>About</a>
-              </li>
-            </ul>
-          </div>
+          <Navbar />
 
           <p>Message from Flask Websocket: {messageFromFlask}</p>
           <LedButton />
@@ -173,25 +125,6 @@ function App() {
         </div>
       ) : (
         <div>
-        <Router>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route
-                    path="/annual"
-                    element={<AnnualReport />}
-                />
-                <Route path="/team" element={<Teams />} />
-                <Route
-                    path="/sign-up"
-                    element={<SignUp />}
-                />
-            </Routes>
-        </Router>
-
-        
-
         <p>Data from Flask</p>
         <pre>{JSON.stringify(data, null, 2)}</pre>
         <p>please refresh the page</p>
