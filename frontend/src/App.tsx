@@ -4,21 +4,6 @@
 import { useState, useEffect } from 'react';
 import './App.css'
 
-// Navbar
-import Navbar from "./components/navbar/index.tsx";
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-} from "react-router-dom";
-
-// Pages
-import Home from "./pages/home.tsx";
-import About from "./pages/about.tsx";
-import AnnualReport from "./pages/annual.tsx";
-import Teams from "./pages/team.tsx";
-import SignUp from "./pages/signIn.tsx";
-
 // Components
 import PortionSliderComponent from './components/slider/portionSlider.tsx';
 import TimeSliderComponent from './components/slider/timeSlider.tsx';
@@ -70,7 +55,7 @@ function App() {
     requestNotificationPermission();
   }, []);
 
-  // ??????????????????????????????/
+  //Socket IO/
   useEffect(() => {
  
     socket.on('frame', data => {
@@ -102,8 +87,6 @@ function App() {
       socket.off('disconnect');
     };
   }, []);
-
- 
 
   useEffect(() => {
     // Define a function to fetch data from your Flask backend
@@ -142,24 +125,6 @@ function App() {
         </div>
       ) : (
         <div>
-        <Router>
-            <Navbar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route
-                    path="/annual"
-                    element={<AnnualReport />}
-                />
-                <Route path="/team" element={<Teams />} />
-                <Route
-                    path="/sign-up"
-                    element={<SignUp />}
-                />
-            </Routes>
-        </Router>
-
-        
 
         <p>Data from Flask</p>
         <pre>{JSON.stringify(data, null, 2)}</pre>
