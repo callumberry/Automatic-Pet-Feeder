@@ -12,6 +12,8 @@ import { LedButton } from './components/buttons/ledButton.tsx';   // Don't know 
 // Socket IO
 import io from 'socket.io-client';
 
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 /* ---------------------------------------------------------------------------------- */
 /* SETUP */
 
@@ -29,6 +31,7 @@ function App() {
   const [data, setData] = useState(null);
   const [messageFromFlask, setMessageFromFlask] = useState<string>('');
   const [frame, setFrame] = useState('');
+  const [showCamera, setShowCamera] = useState(false);
 
   /* ---------------------------------------------------------------------------------- */
   /* FUNCTIONS MAYBE */
@@ -40,6 +43,10 @@ function App() {
 		  });
 		}
 	};
+  const toggleCameraView = () => {
+    setShowCamera(!showCamera);
+  };
+
 
   /* ---------------------------------------------------------------------------------- */
   /* USE EFFECTS */
@@ -55,7 +62,7 @@ function App() {
     requestNotificationPermission();
   }, []);
 
-  //Socket IO/
+  //Socket/
   useEffect(() => {
  
     socket.on('frame', data => {
@@ -112,27 +119,28 @@ function App() {
 /* HTML */
 
 //why is nav bar only there is backend is disconnected?
-  return (
-    <>
-     {data !== null ? (
-        <div>
-          <h1>FEED</h1>
-          <p>Message from Flask Websocket: {messageFromFlask}</p>
-          <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" />
-          <LedButton />
-          <PortionSliderComponent /> 
-          <TimeSliderComponent /> 
-        </div>
-      ) : (
-        <div>
-
-        <p>Data from Flask</p>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-        <p>please refresh the page</p>
+return (
+  <>
+    {showCamera ? (
+      // Render only the camera feed
+      <div>
+        <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" />
+        <button onClick={toggleCameraView}>Show All</button>
       </div>
-      )}
-    </>
-  )
+    ) : (
+      // Render all components
+      <div>
+        <h1>FEED</h1>
+        {/* ... other components */}
+      
+        <LedButton />
+        <PortionSliderComponent />
+        <TimeSliderComponent />
+        <button onClick={toggleCameraView}>Show Camera</button>
+      </div>
+    )}
+  </>
+);
 }
 
 /* ---------------------------------------------------------------------------------- */
