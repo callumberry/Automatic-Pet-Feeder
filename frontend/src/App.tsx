@@ -12,7 +12,7 @@ import { LedButton } from './components/buttons/ledButton.tsx';   // Don't know 
 // Socket IO
 import io from 'socket.io-client';
 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
 
 /* ---------------------------------------------------------------------------------- */
 /* SETUP */
@@ -28,7 +28,7 @@ const socket = io('http://192.168.2.46:5000', {
 
 function App() {
   // Variables and functions to set them
-  const [data, setData] = useState(null);
+  const [connection, setConnection] = useState(null);
   const [messageFromFlask, setMessageFromFlask] = useState<string>('');
   const [frame, setFrame] = useState('');
   const [showCamera, setShowCamera] = useState(false);
@@ -102,7 +102,7 @@ function App() {
         const response = await fetch('/api/data');
         if (response.ok) {
           const jsonData = await response.json();
-          setData(jsonData);
+          setConnection(jsonData);
         } else {
           throw new Error('Network response was not ok');
         }
@@ -121,25 +121,32 @@ function App() {
 //why is nav bar only there is backend is disconnected?
 return (
   <>
-    {showCamera ? (
-      // Render only the camera feed
+  {connection ? (
+    showCamera ? (
+      // Render only the camera feed when data is not null and showCamera is true
       <div>
         <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" />
+        <br/>
         <button onClick={toggleCameraView}>Show All</button>
       </div>
     ) : (
-      // Render all components
+      // Render all components when data is not null and showCamera is false
       <div>
         <h1>FEED</h1>
-        {/* ... other components */}
-      
+        <p>Message from Flask Websocket: {messageFromFlask}</p>
         <LedButton />
         <PortionSliderComponent />
         <TimeSliderComponent />
         <button onClick={toggleCameraView}>Show Camera</button>
       </div>
-    )}
-  </>
+    )
+  ) : (
+    // Render this part when data is null
+    <div>
+      <p>No connection to the server, please refresh the page.</p>
+    </div>
+  )}
+</>
 );
 }
 
