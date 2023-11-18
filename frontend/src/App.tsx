@@ -4,18 +4,15 @@ import PortionSliderComponent from './components/slider/portionSlider.tsx';
 import TimeSliderComponent from './components/slider/timeSlider.tsx';
 import { LedButton } from './components/buttons/ledButton.tsx';
 
-import Navbar from './components/navbar.tsx';
-// import {
-//     BrowserRouter as Router,
-//     Routes,
-//     Route,
-// } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import './components/navbar.css'; // Import your CSS file
+import './pages/home.css';
 
-import Home from "./pages/home.tsx";
-import About from "./pages/about.tsx";
-import AnnualReport from "./pages/annual.tsx";
-import Teams from "./pages/team.tsx";
-import SignUp from "./pages/signIn.tsx";
+// import Home from "./pages/home.tsx";
+// import About from "./pages/about.tsx";
+// import AnnualReport from "./pages/annual.tsx";
+// import Teams from "./pages/team.tsx";
+// import SignUp from "./pages/signIn.tsx";
 
 import io from 'socket.io-client';
 
@@ -110,18 +107,91 @@ function App() {
   }, []); // The empty array means this effect runs once after the initial render
 
 
+const Home = () => 
+<div>Home Page
+    <header>
+        <img src="https://via.placeholder.com/1200x400" alt="Header Image"/>
+    </header>
+
+    <div className="container">
+        <div className="main-content">
+            <h2>About Us</h2>
+            <p>Welcome to our innovative startup! We aim to...</p>
+
+            <h2>Our Services</h2>
+            <ul>
+                <li>Service 1</li>
+                <li>Service 2</li>
+                <li>Service 3</li>
+            </ul>
+        </div>
+
+        <div className="sidebar">
+            <h2>Image Gallery</h2>
+            <div className="gallery">
+               
+                <img src="https://via.placeholder.com/300x200" alt="Image 1"/>
+                <img src="https://via.placeholder.com/300x200" alt="Image 2"/>
+                <img src="https://via.placeholder.com/300x200" alt="Image 3"/>
+                <img src="https://via.placeholder.com/300x200" alt="Image 4"/>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2023 Startup Company | All Rights Reserved
+    </footer>
+</div>;
+
+const Controls = () => 
+<div>Controls Page
+  <div className="container">
+    <br/>
+    <br/>
+    <LedButton />
+    <PortionSliderComponent /> 
+    <TimeSliderComponent /> 
+  </div>
+</div>;
+
+const RemoteMonitering = () => 
+<div>Remote Monitering Page
+  <p>Message from Flask Websocket: {messageFromFlask}</p>
+</div>;
+
+const PetData = () => <div>Pet Data Page</div>;
+const About = () => <div>About Page</div>;
+
+
 //why is nav bar only there is backend is disconnected?
   return (
     <>
      {data !== null ? (   
         
         <div>
-          <Navbar />
+          <Router>
+            <div className="navbar">
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/controls">Contols</Link></li>
+                    <li><Link to="/remoteMonitering">Remote Monitering</Link></li>
+                    <li><Link to="/petData">Pet Data</Link></li>
+                    <li style={{ float: 'right' }}><Link to="/about">About</Link></li>
+                </ul>
 
-          <p>Message from Flask Websocket: {messageFromFlask}</p>
-          <LedButton />
-          <PortionSliderComponent /> 
-          <TimeSliderComponent /> 
+                <hr />  
+            </div>
+            
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/controls" component={Controls} />
+              <Route path="/remoteMonitering" component={RemoteMonitering} />
+              <Route path="/petData" component={PetData} />
+              <Route path="/about" component={About} />
+            </Switch>
+          </Router>
+
+          
         </div>
       ) : (
         <div>
