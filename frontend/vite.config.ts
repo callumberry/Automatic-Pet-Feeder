@@ -8,9 +8,9 @@ export default defineConfig({
   server: {
     proxy: {
       /* change ip to current ip address */
-      '/api': 'http://192.168.2.46:5000', // Proxy requests to your Flask backend
+      '/api': 'http://ipToReplace:5000', // Proxy requests to your Flask backend
       '/socket.io': {
-        target: 'http://192.168.2.46:5000', // IP for socketio
+        target: 'http://ipToReplace:5000', // IP for socketio
         changeOrigin: true,
         ws: true,
       },
