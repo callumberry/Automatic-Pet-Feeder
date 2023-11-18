@@ -1,6 +1,5 @@
-import React from "react";
- 
-const Home = () => {
+ /* Home Page */
+ const Home = () => {
     return (
         <div
             style={{

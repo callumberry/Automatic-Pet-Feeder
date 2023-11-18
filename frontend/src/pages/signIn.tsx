@@ -1,5 +1,4 @@
-import React from "react";
- 
+/* Sign Up Page */
 const SignUp = () => {
     return (
         <div

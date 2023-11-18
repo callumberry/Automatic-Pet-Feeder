@@ -22,7 +22,6 @@ def webcam(socketio):
         # Emit the frame over SocketIO to the frontend
         socketio.emit('frame', {'data': encoded_frame})
       
-        # Break the loop when 'q' key is pressed
         cv2.waitKey(int(target_frame_time * 1000))
 
     # Release resources

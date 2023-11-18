@@ -1,5 +1,4 @@
-import React from "react";
- 
+/* Annual Reports Page */
 const AnnualReport = () => {
     return (
         <div

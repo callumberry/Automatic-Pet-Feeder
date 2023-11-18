@@ -6,7 +6,14 @@ interface PortionButtonProps {
   
   export const PortionButton: React.FC<PortionButtonProps> = ({ sliderValue, onPortionClick }) => {
 
-
+	const showNotification = () => {
+		if ('Notification' in window) {
+		  new Notification('Portions Set', {
+			body: "Set Portions To: " + sliderValue,
+			icon: 'favicon.png', // Replace with the path to your notification icon
+		  });
+		}
+	  };
 	const handleButtonClick = () => {
 		
 		
@@ -18,7 +25,7 @@ interface PortionButtonProps {
 		.then((response) => {
 		  if (response.ok) {
 			console.log('Backend action was triggered successfully.');
-		
+			showNotification()
 		} else {
 			console.error('Backend action request failed.');
             onPortionClick();

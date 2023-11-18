@@ -1,5 +1,11 @@
+/* Modified CSS From Template */
+@font-face {
+  font-family: 'Baumans';
+  /*src: url('./Baumans-Regular.ttf') format('truetype');*/
+  src: url('./Bauhaus-93-Regular.ttf') format('truetype');
+}
 :root {
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Baumans',system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
   

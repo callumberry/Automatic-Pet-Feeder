@@ -1,5 +1,5 @@
-import React from "react";
- 
+/* Team Page*/
+
 const Teams = () => {
     return (
         <div

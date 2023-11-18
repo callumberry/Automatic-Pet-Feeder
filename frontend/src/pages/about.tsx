@@ -1,5 +1,4 @@
-import React from "react";
- 
+/* About Page */
 const About = () => {
     return (
         <div
