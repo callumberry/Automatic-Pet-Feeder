@@ -64,6 +64,18 @@ def schedule_job():
     print("schedule test")
     print("Current Time:", current_time, " timeOne:", timeOne," timeTwo:", timeTwo)
 
+    with open("./data/ultrasonicData.txt", "r", encoding='UTF-8') as file:
+        containerInfo = file.read()
+    socketio.emit('container_data', containerInfo)
+
+    with open("./data/feedTimes.txt", "r", encoding='UTF-8') as file:
+        feedTimes = file.read().split(',')
+    socketio.emit('feed_times', feedTimes)
+
+    with open("./data/encoderData.txt", "r", encoding='UTF-8') as file:
+        feedTimes = file.read()
+    socketio.emit('portion_data', feedTimes)
+
     # checks if current time is one of the selected feeding times
     if current_time == timeOne or current_time == timeTwo:
         portions
@@ -127,6 +139,9 @@ def perform_portion_action():
     global portions
     portions = request.args.get('portions', default=1, type=int)
     print("Portions", portions)
+
+    with open("./data/encoderData.txt", "w") as file:
+                    file.write(str(portions))
 
     return jsonify({'message': f'Portions: {portions}'})\
 
