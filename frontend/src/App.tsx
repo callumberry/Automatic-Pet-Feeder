@@ -22,8 +22,10 @@ import io from 'socket.io-client';
 
 // Configure Socket IO
 const socket = io('http://192.168.2.46:5000', {
-  transports: ['websocket', 'polling'],
-  path: '/socket.io',
+  withCredentials: true,
+  extraHeaders: {
+    "Access-Control-Allow-Origin": "http://192.168.2.46:5000"
+  }
 });
 
 /* ---------------------------------------------------------------------------------- */
