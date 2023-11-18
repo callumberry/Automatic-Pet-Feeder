@@ -5,6 +5,17 @@ import { ServoButton }from '../buttons/servoButton.tsx';
 import { PortionButton }from '../buttons/setPortionButton.tsx'; 
 //import Slider from '@mui/material-next/Slider';
 
+import io from 'socket.io-client';
+
+/* ---------------------------------------------------------------------------------- */
+/* SETUP */
+
+// Configure Socket IO
+const socket = io('http://192.168.2.46:5000', {
+  transports: ['websocket', 'polling'],
+  path: '/socket.io',
+});
+
 const marks = [
   {
     value: 1,
@@ -61,6 +72,11 @@ const SliderComponent = () => {
     setFeedCount(feedCount + 1);
     setPortionCount(portionCount + sliderValue);
   };
+
+  socket.on('portion_data', (data: number) => {
+    setSliderValue(data)
+  });
+
   return (
     <div>
       

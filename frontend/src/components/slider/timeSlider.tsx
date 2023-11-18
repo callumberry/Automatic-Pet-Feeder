@@ -4,10 +4,21 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { ScheduleButton } from '../buttons/setScheduleButton.tsx'; 
 
+import io from 'socket.io-client';
+
+/* ---------------------------------------------------------------------------------- */
+/* SETUP */
+
+// Configure Socket IO
+const socket = io('http://192.168.2.46:5000', {
+  transports: ['websocket', 'polling'],
+  path: '/socket.io',
+});
+
 const marks = [
     {
       value: 5,
-      label: '15:32',
+      label: '05:00',
     },
     {
       value: 6,
@@ -27,7 +38,7 @@ const marks = [
     },
     {
       value: 10,
-      label: '22:22',
+      label: '10:00',
     },
     {
       value: 11,
@@ -121,6 +132,10 @@ export default function MinimumDistanceSlider() {
 
   };
 
+  socket.on('feed_times', (data: number[]) => {
+    setFirstFeed(String(data[0]))
+    setSecondFeed(String(data[1]))
+  });
 
 
   return (

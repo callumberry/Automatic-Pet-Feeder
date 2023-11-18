@@ -55,8 +55,9 @@ def run_webcam():
     webcam(socketio)
 
 # Sets up the thread for the camera
-webcam_thread = threading.Thread(target=run_webcam)
-webcam_thread.start()
+# turned off uncomment to turn on webacam
+#webcam_thread = threading.Thread(target=run_webcam)
+#webcam_thread.start()
 
 # Function that compares current time with set feeding times, to move motor based on portions
 def schedule_job():
