@@ -44,3 +44,6 @@
     - npm install
     - npm fund
     - npm run dev -- --host  
+
+    npm install react-router-dom@5
+    npm install --save-dev @types/react-router-dom
