@@ -9,11 +9,6 @@ import PortionSliderComponent from './components/slider/portionSlider.tsx';
 import TimeSliderComponent from './components/slider/timeSlider.tsx';
 import { LedButton } from './components/buttons/ledButton.tsx';   // Don't know why this one needs brackets
 
-// Navbar
-import { BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
-import './components/navbar/navbar.css'; // Import your CSS file
-import './pages/home.css';
-
 // Socket IO
 import io from 'socket.io-client';
 
@@ -36,6 +31,7 @@ function App() {
   const [data, setData] = useState(null);
   const [messageFromFlask, setMessageFromFlask] = useState<string>('');
   const [frame, setFrame] = useState('');
+  const [showCamera, setShowCamera] = useState(false);
 
   /* ---------------------------------------------------------------------------------- */
   /* FUNCTIONS MAYBE */
@@ -47,6 +43,10 @@ function App() {
 		  });
 		}
 	};
+
+  const toggleCameraView = () => {
+    setShowCamera(!showCamera);
+  };
 
   /* ---------------------------------------------------------------------------------- */
   /* USE EFFECTS */
@@ -134,105 +134,37 @@ function App() {
 /* ---------------------------------------------------------------------------------- */
 /* HTML */
 
-//why is nav bar only there is backend is disconnected?
-const Home = () => 
-<div>Home Page
-    <header>
-        <img src="https://via.placeholder.com/1200x400" alt="Header Image"/>
-    </header>
-
-    <div className="container">
-        <div className="main-content">
-            <h2>About Us</h2>
-            <p>Welcome to our innovative startup! We aim to...</p>
-
-            <h2>Our Services</h2>
-            <ul>
-                <li>Service 1</li>
-                <li>Service 2</li>
-                <li>Service 3</li>
-            </ul>
-        </div>
-
-        <div className="sidebar">
-            <h2>Image Gallery</h2>
-            <div className="gallery">
-               
-                <img src="https://via.placeholder.com/300x200" alt="Image 1"/>
-                <img src="https://via.placeholder.com/300x200" alt="Image 2"/>
-                <img src="https://via.placeholder.com/300x200" alt="Image 3"/>
-                <img src="https://via.placeholder.com/300x200" alt="Image 4"/>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2023 Startup Company | All Rights Reserved
-    </footer>
-</div>;
-
-const Controls = () => 
-<div>Controls Page
-  <div className="container">
-    <br/>
-    <br/>
-    <LedButton />
-    <PortionSliderComponent /> 
-    <TimeSliderComponent /> 
-  </div>
-</div>;
-
-const RemoteMonitering = () => 
-<div>Remote Monitering Page
-  <br/>
-  <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" />
-  <p>Information on your food storage: {messageFromFlask}</p>
-</div>;
-
-const PetData = () => <div>Pet Data Page</div>;
-const About = () => <div>About Page</div>;
-
-
-//why is nav bar only there is backend is disconnected?
-  return (
-    <>
-     {data !== null ? (   
-        
-        <div>
-          <Router>
-            <div className="navbar">
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/controls">Contols</Link></li>
-                    <li><Link to="/remoteMonitering">Remote Monitering</Link></li>
-                    <li><Link to="/petData">Pet Data</Link></li>
-                    <li style={{ float: 'right' }}><Link to="/about">About</Link></li>
-                </ul>
-
-                <hr />  
-            </div>
-            
-            <Routes>
-              <Route path="/" element={<Home/>} />
-              <Route path="/controls" element={<Controls/>} />
-              <Route path="/remoteMonitering" element={<RemoteMonitering/>} />
-              <Route path="/petData" element={<PetData/>} />
-              <Route path="/about" element={<About/>} />
-            </Routes>
-          </Router>
-
-          
-        </div>
-      ) : (
-        <div>
-        <p>Data from Flask</p>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-        <p>please refresh the page</p>
+return (
+  <>
+  {data ? (
+    showCamera ? (
+      // Render only the camera feed when data is not null and showCamera is true
+      <div>
+        <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" />
+        <br/>
+        <button onClick={toggleCameraView}>Show All</button>
       </div>
-      )}
-    </>
-  )
+    ) : (
+      // Render all components when data is not null and showCamera is false
+      <div>
+        <h1>FEED</h1>
+        <p>Message from Flask Websocket: {messageFromFlask}</p>
+        <LedButton />
+        <PortionSliderComponent />
+        <TimeSliderComponent />
+        <button onClick={toggleCameraView}>Show Camera</button>
+      </div>
+    )
+  ) : (
+    // Render this part when data is null
+    <div>
+      <p>No connection to the server, please refresh the page.</p>
+    </div>
+  )}
+</>
+);
 }
+
 /* ---------------------------------------------------------------------------------- */
 // Export
 export default App
