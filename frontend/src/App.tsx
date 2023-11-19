@@ -16,10 +16,10 @@ import io from 'socket.io-client';
 /* SETUP */
 
 // Configure Socket IO
-const socket = io('http://iptorepplace:5000', {
+const socket = io('http://192.168.2.46:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://iptorepplace:5000"
+    "Access-Control-Allow-Origin": "http://192.168.2.46:5000"
   }
 });
 
@@ -176,6 +176,10 @@ return (
     </div>
   )}
   </div>
+  <br/>
+  <footer>
+        <p>&copy; 2023 feed. All rights reserved.</p>
+  </footer>
 </>
 );
 }

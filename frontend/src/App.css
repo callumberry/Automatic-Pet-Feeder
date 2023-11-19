@@ -6,8 +6,10 @@
   text-align: center;
   margin: 0 auto;
 
- 
+  width: 100%;
 }
+
+
 
 .nav-buttons {
   background-color: transparent;

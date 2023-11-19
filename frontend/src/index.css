@@ -12,7 +12,7 @@
     color-scheme: light dark;
     color: rgba(255, 255, 255, 0.87);
     background-color: #242424;
-  
+    width: 100%;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -24,15 +24,27 @@
  
   .body{
     display: flex;
+    width: 100%;
     justify-content: center; /* Horizontally center the content */
     align-items: center; /* Vertically center the content */
    
     }
-
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+  }
   .header {
+    padding-left: 10px;
     display: flex;
+    justify-content: space-between;
     flex-wrap: nowrap;
     background-color:  #6d6d6d;
+    width: 100%;
     }
   body {
     margin: 0;
@@ -41,15 +53,24 @@
   @media (max-width: 768px) {
     .header{
       width: 250%;
-  
+    
+     
+      font-size: 1em;
+
+     
+    }
+    footer{
+      font-size: 1.5em;
+
     }
     .body{
-      
+      width: 250%;
       font-size: 2em;
 
-      width: 250%;
+     
      
       display: flex;
+      
       justify-content: center; /* Horizontally center the content */
       align-items: center; /* Vertically center the content */
     }

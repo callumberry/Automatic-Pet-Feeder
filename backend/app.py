@@ -17,7 +17,7 @@ import threading
 # Hardware 
 from webcam import webcam
 # Uncomment For Pi, comment for PC #
-from hardware import move_servo_min_to_max, toggle_led, move_stepper_motor
+#from hardware import move_servo_min_to_max, toggle_led, move_stepper_motor
 
 # ----------------------------------------------------------------------------------#
 # SETUP #
@@ -26,7 +26,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Change IP to current IP
-socketio = SocketIO(app, cors_allowed_origins="http://iptorepplace:5173", path='/socket.io') 
+socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.46:5173", path='/socket.io') 
 
 # Setting Global Variables
 timeOne = None
@@ -84,8 +84,8 @@ def schedule_job():
 
         for _ in range(portions):
             # Uncomment For Pi, comment for PC #
-            move_servo_min_to_max()
-            move_stepper_motor()
+            #move_servo_min_to_max()
+            #move_stepper_motor()
             print("Servo Moved")
     
 
@@ -114,7 +114,7 @@ def get_data():
 @app.route('/api/backend-action', methods=['GET'])
 def perform_backend_action():
     # Uncomment For Pi, comment for PC #
-    toggle_led()
+    #toggle_led()
     
     print("LED Toggled")
     return jsonify({'message': 'Led toggled'})
@@ -128,8 +128,8 @@ def perform_servo_action():
     # Perform the servo action 'repeat' times based on the sliderValue
     for _ in range(portions):
         # Uncomment For Pi, comment for PC #
-        move_servo_min_to_max()
-        move_stepper_motor()
+        #move_servo_min_to_max()
+        #move_stepper_motor()
         print("Motor Moved")
 
     return jsonify({'message': f'Servo Positioned {portions} times'})\
