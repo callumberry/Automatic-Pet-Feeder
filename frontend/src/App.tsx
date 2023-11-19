@@ -16,10 +16,10 @@ import io from 'socket.io-client';
 /* SETUP */
 
 // Configure Socket IO
-const socket = io('http://ipToReplace:5000', {
+const socket = io('http://iptorepplace:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://ipToReplace:5000"
+    "Access-Control-Allow-Origin": "http://iptorepplace:5000"
   }
 });
 
@@ -31,7 +31,7 @@ function App() {
   const [data, setData] = useState(null);
   const [messageFromFlask, setMessageFromFlask] = useState<string>('');
   const [frame, setFrame] = useState('');
-  const [showCamera, setShowCamera] = useState(false);
+  const [page, setPage] = useState<string>('home');
 
   /* ---------------------------------------------------------------------------------- */
   /* FUNCTIONS MAYBE */
@@ -43,11 +43,6 @@ function App() {
 		  });
 		}
 	};
-
-  const toggleCameraView = () => {
-    setShowCamera(!showCamera);
-  };
-
   /* ---------------------------------------------------------------------------------- */
   /* USE EFFECTS */
 
@@ -136,24 +131,43 @@ function App() {
 
 return (
   <>
+  <div className="header">
+    <button onClick={() => setPage("home")} className="nav-buttons">feed</button>
+    <button onClick={() => setPage("controls")} className="nav-buttons">controls</button>
+    <button onClick={() => setPage("monitoring")} className="nav-buttons">remote monitoring</button>
+    <button onClick={() => setPage("pet")} className="nav-buttons">pet data</button>
+    <button onClick={() => setPage("about")} className="nav-buttons">about</button>
+    <br/>
+  </div>
+  <div className="body">
   {data ? (
-    showCamera ? (
+    page == "monitoring" ? (
       // Render only the camera feed when data is not null and showCamera is true
       <div>
+        <p>Container Food Level: {messageFromFlask}</p>
         <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" />
-        <br/>
-        <button onClick={toggleCameraView}>Show All</button>
+        
       </div>
-    ) : (
-      // Render all components when data is not null and showCamera is false
+    ) : page == "controls" ? (
       <div>
-        <h1>FEED</h1>
-        <p>Message from Flask Websocket: {messageFromFlask}</p>
+        <br/>
         <LedButton />
         <PortionSliderComponent />
         <TimeSliderComponent />
-        <button onClick={toggleCameraView}>Show Camera</button>
       </div>
+    ) : page == "pet" ? (
+      <div>
+        <p>Pet Data</p>
+      </div>
+    ) : page == "about" ? (
+      <div>
+        <p>About</p>
+      </div>
+    ) : (
+      <div>
+       <p>Home Page</p>
+      </div>  
+
     )
   ) : (
     // Render this part when data is null
@@ -161,6 +175,7 @@ return (
       <p>No connection to the server, please refresh the page.</p>
     </div>
   )}
+  </div>
 </>
 );
 }

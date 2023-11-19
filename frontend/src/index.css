@@ -18,19 +18,42 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-    width: 100%;
-  }
-  
-  body {
-    width: 100%;
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
-  }
 
+ 
+  }
+ 
+  .body{
+    display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+   
+    }
+
+  .header {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color:  #6d6d6d;
+    }
+  body {
+    margin: 0;
   
+  }
+  @media (max-width: 768px) {
+    .header{
+      width: 250%;
+  
+    }
+    .body{
+      
+      font-size: 2em;
+
+      width: 250%;
+     
+      display: flex;
+      justify-content: center; /* Horizontally center the content */
+      align-items: center; /* Vertically center the content */
+    }
+  }
   button {
     border-radius: 8px;
     border: 1px solid transparent;

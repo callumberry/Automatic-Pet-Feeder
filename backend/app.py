@@ -26,7 +26,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Change IP to current IP
-socketio = SocketIO(app, cors_allowed_origins="http://ipToReplace:5173", path='/socket.io') 
+socketio = SocketIO(app, cors_allowed_origins="http://iptorepplace:5173", path='/socket.io') 
 
 # Setting Global Variables
 timeOne = None
@@ -56,8 +56,8 @@ def run_webcam():
 
 # Sets up the thread for the camera
 # turned off uncomment to turn on webacam
-#webcam_thread = threading.Thread(target=run_webcam)
-#webcam_thread.start()
+webcam_thread = threading.Thread(target=run_webcam,  daemon=True)
+webcam_thread.start()
 
 # Function that compares current time with set feeding times, to move motor based on portions
 def schedule_job():
@@ -84,8 +84,8 @@ def schedule_job():
 
         for _ in range(portions):
             # Uncomment For Pi, comment for PC #
-            #move_servo_min_to_max()
-            #move_stepper_motor()
+            move_servo_min_to_max()
+            move_stepper_motor()
             print("Servo Moved")
     
 
@@ -128,8 +128,8 @@ def perform_servo_action():
     # Perform the servo action 'repeat' times based on the sliderValue
     for _ in range(portions):
         # Uncomment For Pi, comment for PC #
-        #move_servo_min_to_max()
-        #move_stepper_motor()
+        move_servo_min_to_max()
+        move_stepper_motor()
         print("Motor Moved")
 
     return jsonify({'message': f'Servo Positioned {portions} times'})\

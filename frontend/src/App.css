@@ -1,9 +1,28 @@
 /* Modified CSS From Template */
 #root {
-    /*max-width: 1280px;*/
-    margin: 0 auto;
-    /*padding: 2rem;*/
-    text-align: center;
-  }
+  /*max-width: 1280px;*/
+ 
+  /*padding: 2rem;*/
+  text-align: center;
+  margin: 0 auto;
 
+ 
+}
+
+.nav-buttons {
+  background-color: transparent;
+  border-radius: 0px;
+  font-size: 1.5em;
+  margin-right: 10px; /* Add some spacing between buttons */
+  white-space: nowrap;
+  transition: border-color 0s;
+}
+.nav-buttons:hover {
+  background-color: #5a5a5a;
+  border-color: #5a5a5a;
+}
+.nav-buttons:focus,
+.nav-buttons:focus-visible {
+  outline: 0px auto -webkit-focus-ring-color;
+}
 
