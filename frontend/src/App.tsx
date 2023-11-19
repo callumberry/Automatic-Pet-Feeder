@@ -131,6 +131,7 @@ function App() {
 
 return (
   <>
+  
   <div className="header">
     <button onClick={() => setPage("home")} className="nav-buttons">feed</button>
     <button onClick={() => setPage("controls")} className="nav-buttons">controls</button>

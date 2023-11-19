@@ -90,6 +90,7 @@ const SliderComponent = () => {
           step={1}
           min={1}
           max={5}
+          
           //getAriaValueText={valuetext}
           //valueLabelDisplay="auto"
           marks={marks}
