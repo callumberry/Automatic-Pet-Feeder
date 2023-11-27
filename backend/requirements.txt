@@ -1,6 +1,0 @@
-flask
-flask_cors
-ntplib
-apscheduler
-gpiozero
-RPi.GPIO
