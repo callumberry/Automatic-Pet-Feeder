@@ -146,7 +146,7 @@ return (
       // Render only the camera feed when data is not null and showCamera is true
       <div>
         <p>Container Food Level: {messageFromFlask}</p>
-        <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" style={{cwidth: '640px', height:'auto'}}  />
+        <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" style={{width: '640px', height:'auto'}}  />
         
       </div>
     ) : page == "controls" ? (
