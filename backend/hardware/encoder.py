@@ -6,7 +6,7 @@ def tryGetEncoderData():
 
     # Define the GPIO pins used for CLK, DT, and SW.
     CLK_PIN = 22  # Change to the actual GPIO pin you connected the CLK pin to.
-    DT_PIN = 18   # Change to the actual GPIO pin you connected the DT pin to.
+    DT_PIN = 17   # Change to the actual GPIO pin you connected the DT pin to.
     SW_PIN = 27   # Change to the actual GPIO pin you connected the SW pin to.
 
     

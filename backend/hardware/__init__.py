@@ -8,10 +8,10 @@ from .analog import tryGetAnalog
 from .encoder import tryGetEncoderData
 from .ultrasonic import tryGetUltrasonicData
 
-encoderThread = threading.Thread(target=tryGetEncoderData)
-analogThread = threading.Thread(target=tryGetAnalog)
-lcdThread = threading.Thread(target=tryWriteToLCD)
-ultrasonicThread = threading.Thread(target=tryGetUltrasonicData)
+encoderThread = threading.Thread(target=tryGetEncoderData,  daemon=True)
+analogThread = threading.Thread(target=tryGetAnalog,  daemon=True)
+lcdThread = threading.Thread(target=tryWriteToLCD,  daemon=True)
+ultrasonicThread = threading.Thread(target=tryGetUltrasonicData,  daemon=True)
 encoderThread.start()
 analogThread.start()
 lcdThread.start()

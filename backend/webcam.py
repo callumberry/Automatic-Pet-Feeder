@@ -3,7 +3,10 @@ import base64
 
 def webcam(socketio):
     cap = cv2.VideoCapture(0, cv2.CAP_V4L2)
-    target_frame_rate = 30
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 160)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 120)
+
+    target_frame_rate = 10
     target_frame_time = 1 / target_frame_rate
 
     while cap.isOpened():

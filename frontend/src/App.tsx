@@ -16,10 +16,10 @@ import io from 'socket.io-client';
 /* SETUP */
 
 // Configure Socket IO
-const socket = io('http://iptochange:5000', {
+const socket = io('http://192.168.2.113:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://iptochange:5000"
+    "Access-Control-Allow-Origin": "http://192.168.2.113:5000"
   }
 });
 
@@ -146,7 +146,7 @@ return (
       // Render only the camera feed when data is not null and showCamera is true
       <div>
         <p>Container Food Level: {messageFromFlask}</p>
-        <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" />
+        <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" style={{cwidth: '640px', height:'auto'}}  />
         
       </div>
     ) : page == "controls" ? (

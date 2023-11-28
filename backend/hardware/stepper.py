@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 import time
 
 # Define pin connections & motor's steps per revolution
-dirPin = 15
-stepPin = 18
+dirPin = 24
+stepPin = 23
 stepsPerRevolution = 200
 delay = 0.001
 # Set up GPIO mode
@@ -25,13 +25,13 @@ def move_stepper_motor():
         time.sleep(delay)
 
     # Set motor direction counterclockwise
-    GPIO.output(dirPin, GPIO.LOW)
-    time.sleep(1) 
-    for _ in range(stepsPerRevolution):
-        GPIO.output(stepPin, GPIO.HIGH)
-        time.sleep(delay)
-        GPIO.output(stepPin, GPIO.LOW)
-        time.sleep(delay)
+    # GPIO.output(dirPin, GPIO.LOW)
+    # time.sleep(1) 
+    # for _ in range(stepsPerRevolution):
+    #     GPIO.output(stepPin, GPIO.HIGH)
+    #     time.sleep(delay)
+    #     GPIO.output(stepPin, GPIO.LOW)
+    #     time.sleep(delay)
 
     GPIO.cleanup()     
 
