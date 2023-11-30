@@ -4,8 +4,8 @@ import time
 # Define pin connections & motor's steps per revolution
 dirPin = 24
 stepPin = 23
-stepsPerRevolution = 200
-delay = 0.001
+stepsPerRevolution = 200//4
+delay = 0.1
 # Set up GPIO mode
 
 

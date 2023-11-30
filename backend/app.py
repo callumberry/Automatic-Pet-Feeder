@@ -26,7 +26,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Change IP to current IP
-socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.113:5173", path='/socket.io') 
+socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.198:5173", path='/socket.io') 
 
 # Setting Global Variables
 timeOne = None

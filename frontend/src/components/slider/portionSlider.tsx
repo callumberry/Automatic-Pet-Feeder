@@ -11,10 +11,10 @@ import io from 'socket.io-client';
 /* SETUP */
 
 // Configure Socket IO
-const socket = io('http://192.168.2.113:5000', {
+const socket = io('http://192.168.2.198:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://192.168.2.113:5000"
+    "Access-Control-Allow-Origin": "http://192.168.2.198:5000"
   }
 });
 
