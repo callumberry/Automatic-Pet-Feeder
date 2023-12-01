@@ -6,6 +6,15 @@ interface ServoButtonProps {
   export const ServoButton: React.FC<ServoButtonProps> = ({ onServoClick }) => {
 	const [isServoMoving, setIsServoMoving] = useState(false);
 
+	const showNotification = () => {
+		if ('Notification' in window) {
+		  new Notification('Pet Fed', {
+			body: 'Manual Feeding Successful',
+			icon: 'favicon.png', // Replace with the path to your notification icon
+		  });
+		}
+	};
+
 	const handleButtonClick = () => {
 		if (isServoMoving) {
 			return;
@@ -23,6 +32,7 @@ interface ServoButtonProps {
 			console.log('Backend action was triggered successfully.');
 			onServoClick();
 			setIsServoMoving(false);
+			showNotification()
 		} else {
 			console.error('Backend action request failed.');
 			setIsServoMoving(false);

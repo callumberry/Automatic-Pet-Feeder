@@ -8,6 +8,11 @@ import './App.css'
 import PortionSliderComponent from './components/slider/portionSlider.tsx';
 import TimeSliderComponent from './components/slider/timeSlider.tsx';
 import { LedButton } from './components/buttons/ledButton.tsx';   // Don't know why this one needs brackets
+import BarChart from './components/graphs/BarChart';
+import UltrasonicLineChart from './components/graphs/UltrasonicLineChart.tsx';
+import PetFeeder from './components/dropdown/FeedingScheduler.tsx';
+import ImageCarousel from './components/carousel/ImageCarousel.tsx';
+import ContainerFillVisualizer from './components/container/container.tsx';
 
 // Socket IO
 import io from 'socket.io-client';
@@ -16,10 +21,10 @@ import io from 'socket.io-client';
 /* SETUP */
 
 // Configure Socket IO
-const socket = io('http://192.168.2.198:5000', {
+const socket = io('http://192.168.2.113:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://192.168.2.198:5000"
+    "Access-Control-Allow-Origin": "http://192.168.2.113:5000"
   }
 });
 
@@ -32,6 +37,24 @@ function App() {
   const [messageFromFlask, setMessageFromFlask] = useState<string>('');
   const [frame, setFrame] = useState('');
   const [page, setPage] = useState<string>('home');
+
+  /* --------------------------------------------------------------------------------- */
+  /* Component Data */
+  const data1 = [65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55, 65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55];
+  const labels1 = ['12am', '1am', '2am', '3am', '4am', '5am', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm', '9pm', '10pm', '11pm'];
+
+  const data2 = [65, 59, 80, 81, 56, 55, 40];
+  const labels2 = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  const fillPercentage = 50;
+  const customIconUrl = 'https://cdn1.iconfinder.com/data/icons/shapes/24/Cylinder-2-512.png'; // Replace with your custom icon URL
+  
+  const images = [
+    'https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/advisor/wp-content/uploads/2023/09/getty_creative.jpeg.jpg',
+    'https://www.usatoday.com/gcdn/presto/2022/05/25/USAT/719946ca-660e-4ebf-805a-2c3b7d221a85-Hero-3.jpg?crop=1593,897,x6,y0&width=1593&height=796&format=pjpg&auto=webp',
+    'https://images.halloweencostumes.ca/products/21346/1-1/adult-black-cat-costume.jpg',
+    'https://i.ebayimg.com/images/g/KL8AAOSwV4ZjruEo/s-l1200.webp'
+  ];
 
   /* ---------------------------------------------------------------------------------- */
   /* FUNCTIONS MAYBE */
@@ -145,9 +168,10 @@ return (
     page == "monitoring" ? (
       // Render only the camera feed when data is not null and showCamera is true
       <div>
-        <p>Container Food Level: {messageFromFlask}</p>
+        <br/>
         <img src={`data:image/jpeg;base64,${frame}`} alt="Webcam Stream" style={{width: '640px', height:'auto'}}  />
-        
+        <h1>Container Food Level: {messageFromFlask}</h1>
+        <ContainerFillVisualizer fillPercentage={fillPercentage} customIconUrl={customIconUrl} />
       </div>
     ) : page == "controls" ? (
       <div>
@@ -159,6 +183,10 @@ return (
     ) : page == "pet" ? (
       <div>
         <p>Pet Data</p>
+        <p>Today's Consumption</p>
+        <BarChart data={data1} labels={labels1} />
+        <p>This Week's Consumption</p>
+        <BarChart data={data2} labels={labels2} />
       </div>
     ) : page == "about" ? (
       <div>
@@ -166,7 +194,7 @@ return (
       </div>
     ) : (
       <div>
-       <p>Home Page</p>
+       <ImageCarousel images={images} />
       </div>  
 
     )

@@ -57,23 +57,41 @@ def tryGetEncoderData():
             if clk_state != clk_last_state:
                 if GPIO.input(DT_PIN) != clk_state:
                     if(selection == option[0]):
-                        pos -= 1
+                        if pos <= 1:
+                            pos = 1
+                        else:
+                            pos -= 1
                     elif(selection == option[1]):
-                        timeOne -= 1
+                        if timeOne <= 0:
+                            timeOne = 0
+                        else:
+                            timeOne -= 1
                         timeOneToWrite = str(timeOne) + ":00"
                     elif(selection == option[2]):
-                        timeTwo -= 1
+                        if timeTwo <= 0:
+                            timeTwo = 0
+                        else:
+                            timeTwo -= 1
                         timeTwoToWrite = str(timeTwo) + ":00   "
                     
 
                 else:
                     if(selection == option[0]):
-                        pos += 1
+                        if pos >= 5:
+                            pos = 5
+                        else:
+                            pos += 1
                     elif(selection == option[1]):
-                        timeOne += 1
+                        if timeOne >= 24:
+                            timeOne = 24
+                        else:
+                            timeOne += 1
                         timeOneToWrite = str(timeOne) + ":00"
                     elif(selection == option[2]):
-                        timeTwo += 1
+                        if timeTwo >= 24:
+                            timeTwo = 24
+                        else:
+                            timeTwo += 1
                         timeTwoToWrite = str(timeTwo) + ":00   "
 
                 if(selection == option[0]):

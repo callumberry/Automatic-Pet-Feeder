@@ -1,0 +1,22 @@
+/* src/ImageCarousel.css */
+.image-carousel {
+    overflow-y: scroll;
+    height: 100vh; /* Set a fixed height for the carousel container */
+  }
+  
+  .image-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .carousel-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Preserve aspect ratio without cropping */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+  .carousel-image.active {
+    opacity: 1;
+  }

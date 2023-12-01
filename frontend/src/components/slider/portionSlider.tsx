@@ -11,10 +11,10 @@ import io from 'socket.io-client';
 /* SETUP */
 
 // Configure Socket IO
-const socket = io('http://192.168.2.198:5000', {
+const socket = io('http://192.168.2.113:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://192.168.2.198:5000"
+    "Access-Control-Allow-Origin": "http://192.168.2.113:5000"
   }
 });
 
@@ -66,17 +66,18 @@ const SliderComponent = () => {
   const handleServoClick = () => {
     // Update feedCount and portionCount when Servo On is clicked
     setFeedCount(feedCount + 1);
-    setPortionCount(portionCount + sliderValue);
+    setPortionCount(portionCount + parseInt(sliderValue));
   };
 
   const handlePortionClick = () => {
     // Update feedCount and portionCount when Servo On is clicked
     setFeedCount(feedCount + 1);
-    setPortionCount(portionCount + sliderValue);
+    setPortionCount(portionCount + parseInt(sliderValue));
   };
 
   socket.on('portion_data', (data: number) => {
-    setSliderValue(data)
+    setSliderValue(parseInt(data))
+    console.log(data)
   });
 
   return (

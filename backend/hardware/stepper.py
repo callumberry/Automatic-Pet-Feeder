@@ -18,12 +18,15 @@ def move_stepper_motor():
     # Set motor direction clockwise
     GPIO.output(dirPin, GPIO.HIGH)
 
+    previousData = open("./data/pressureData.txt", "r")
+
     for _ in range(stepsPerRevolution):
         GPIO.output(stepPin, GPIO.HIGH)
         time.sleep(delay)
         GPIO.output(stepPin, GPIO.LOW)
         time.sleep(delay)
 
+  
     # Set motor direction counterclockwise
     # GPIO.output(dirPin, GPIO.LOW)
     # time.sleep(1) 

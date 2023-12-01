@@ -26,7 +26,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Change IP to current IP
-socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.198:5173", path='/socket.io') 
+socketio = SocketIO(app, cors_allowed_origins="http://192.168.2.113:5173", path='/socket.io') 
 
 # Setting Global Variables
 timeOne = None
@@ -75,6 +75,8 @@ def schedule_job():
 
     with open("./data/encoderData.txt", "r", encoding='UTF-8') as file:
         feedTimes = file.read()
+    print("Portion Sent")
+    print(feedTimes)
     socketio.emit('portion_data', feedTimes)
 
     # checks if current time is one of the selected feeding times

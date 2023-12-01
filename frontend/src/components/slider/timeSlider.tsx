@@ -10,10 +10,10 @@ import io from 'socket.io-client';
 /* SETUP */
 
 // Configure Socket IO
-const socket = io('http://192.168.2.198:5000', {
+const socket = io('http://192.168.2.113:5000', {
   withCredentials: true,
   extraHeaders: {
-    "Access-Control-Allow-Origin": "http://192.168.2.198:5000"
+    "Access-Control-Allow-Origin": "http://192.168.2.113:5000"
   }
 });
 
@@ -99,8 +99,7 @@ export default function MinimumDistanceSlider() {
   const [value1, setValue1] = React.useState<number[]>([7, 18]);
   const [firstFeed, setFirstFeed] = useState<string>('07:00');; 
   const [secondFeed, setSecondFeed] = useState<string>('18:00'); 
-
-
+ 
 
   const handleScheduleClick = () => {
     const firstFeedLabel = marks.find((mark) => mark.value === value1[0])?.label || '';
@@ -135,12 +134,21 @@ export default function MinimumDistanceSlider() {
   };
 
   socket.on('feed_times', (data: number[]) => {
-    setFirstFeed(String(data[0]))
-    setSecondFeed(String(data[1]))
+    setFirstFeed(String(data[0]));
+    setSecondFeed(String(data[1]));
+
+    let time1String = data[0].toString().split(':');
+    let feeding1 = parseInt(time1String[0], 10)
+    let time2String = data[1].toString().split(':');
+    let feeding2 = parseInt(time2String[0], 10)
+
+
+    setValue1([feeding1, feeding2]);
+ 
   });
-
-
+ 
   return (
+    
     <Box sx={{ width: 800 }}>
       <h1>Time Slider</h1>
       <Slider

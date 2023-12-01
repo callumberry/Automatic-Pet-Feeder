@@ -12,15 +12,26 @@ def tryGetUltrasonicData():
         print(distance)
         time.sleep(5)
         
-        if(distance<10):
+        if(distance<4):
             print("Container Full")
             message = "Container Full"
-        elif(distance>18):
+        elif((distance>8) & (distance<=15)):
             print("Container Almost Empty")
             message = "Container Almost Empty"
-        else:
+        elif((distance>=4) & (distance<=8)):
             print("Container Half Full")
             message = "Container Half Full"
+        else:
+            print("Lid was left open")
+            message = "Lid was left open"
 
         with open("./data/ultrasonicData.txt", "w") as file:
                     file.write(str(message))
+
+
+
+
+
+
+
+

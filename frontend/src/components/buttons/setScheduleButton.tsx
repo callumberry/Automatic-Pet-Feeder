@@ -6,6 +6,14 @@ interface ScheduleButtonProps {
   }
   
   export const ScheduleButton: React.FC<ScheduleButtonProps> = ({ firstFeedLabel, secondFeedLabel, onScheduleClick }) => {
+	const showNotification = () => {
+		if ('Notification' in window) {
+		  new Notification('Schedule Set', {
+			body: "Set Schedule To: " + firstFeedLabel + " and " + secondFeedLabel,
+			icon: 'favicon.png', // Replace with the path to your notification icon
+		  });
+		}
+	  };
 
 	const handleButtonClick = () => {
 	
@@ -17,6 +25,7 @@ interface ScheduleButtonProps {
 		  if (response.ok) {
 			console.log('Backend action was triggered successfully.', firstFeedLabel, secondFeedLabel);
             onScheduleClick()
+			showNotification()
 			
 		} else {
 			console.error('Backend action request failed.');	
