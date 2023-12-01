@@ -1,5 +1,8 @@
 # Feed 
 
+# Luke 
+ - everything is murged but backend hardware file didnt want to merge cause i cant test
+
 ## Branch Explanation
 
 ### calllum, callan, and luke
@@ -46,3 +49,6 @@
     - npm install
     - npm fund
     - npm run dev -- --host  
+
+    npm install react-router-dom@5
+    npm install --save-dev @types/react-router-dom

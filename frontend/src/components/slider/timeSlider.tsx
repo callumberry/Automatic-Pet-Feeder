@@ -2,12 +2,21 @@ import * as React from 'react';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { ScheduleButton } from '../testing/setScheduleButton.tsx'; 
+import { ScheduleButton } from '../buttons/setScheduleButton.tsx'; 
+
+import io from 'socket.io-client';
+
+const socket = io('http://ipToReplace:5000', {
+  withCredentials: true,
+  extraHeaders: {
+    "Access-Control-Allow-Origin": "http://ipToReplace:5000"
+  }
+});
 
 const marks = [
     {
       value: 5,
-      label: '11:37',
+      label: '22:32',
     },
     {
       value: 6,
@@ -27,7 +36,7 @@ const marks = [
     },
     {
       value: 10,
-      label: '10:00',
+      label: '22:22',
     },
     {
       value: 11,
@@ -117,6 +126,7 @@ export default function MinimumDistanceSlider() {
         setValue1([clamped - minDistance, clamped]);
       }
     } else {
+      console.log(newValue)
       setValue1(newValue as number[]);
     }
     //const firstFeedLabel = marks.find((mark) => mark.value === value1[0])?.label || '';
@@ -126,6 +136,11 @@ export default function MinimumDistanceSlider() {
     //setFirstFeed(firstFeedLabel);
     //setSecondFeed(secondFeedLabel);
   };
+
+  socket.on('feed_times', (data: number[]) => {
+    setFirstFeed(String(data[0]))
+    setSecondFeed(String(data[1]))
+  });
 
 
 

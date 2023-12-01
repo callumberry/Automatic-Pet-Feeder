@@ -1,5 +1,4 @@
 from gpiozero import LED
-from time import sleep
 
 # Define the LED and its GPIO pin
 led = LED(21)  # Change the GPIO pin number as needed

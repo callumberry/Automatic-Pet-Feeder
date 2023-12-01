@@ -18,8 +18,7 @@ interface PortionButtonProps {
 		.then((response) => {
 		  if (response.ok) {
 			console.log('Backend action was triggered successfully.');
-			onServoClick();
-			setIsServoMoving(false);
+		
 		} else {
 			console.error('Backend action request failed.');
             onPortionClick();
