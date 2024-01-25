@@ -1,7 +1,4 @@
-# Feed 
-
-# Luke 
- - everything is murged but backend hardware file didnt want to merge cause i cant test
+# AUtomatic Pet Feeder
 
 ## Branch Explanation
 
@@ -34,12 +31,9 @@
     - source venv/bin/activate
     - pip install -r requirements.txt
     - virtualenv --system-site-packages venv
-<<<<<<< HEAD
-    - sudo /home/pi/Desktop/feed/server/venv/bin/flask run --host=0.0.0.0 <----for pi must change to your directory
-    /home/tardis/Desktop/ts-website/backend/venv  <------- only for me (Callum)
-=======
+
+    - sudo /home/pi/Desktop/feed/server/venv/bin/flask run --host=0.0.0.0 <----for pi must change to your directory, for personal device
     - sudo -E venv/bin/flask run --host=0.0.0.0
->>>>>>> rasp-pi-dev
 
 ## Material UI for React (might not be required)
 - npm install @mui/material @emotion/react @emotion/styled
