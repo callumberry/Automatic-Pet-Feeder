@@ -1,4 +1,4 @@
-# AUtomatic Pet Feeder
+# Automatic Pet Feeder
 
 ## Branch Explanation
 
