@@ -8,11 +8,6 @@ import { BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import './components/navbar.css'; // Import your CSS file
 import './pages/home.css';
 
-// import Home from "./pages/home.tsx";
-// import About from "./pages/about.tsx";
-// import AnnualReport from "./pages/annual.tsx";
-// import Teams from "./pages/team.tsx";
-// import SignUp from "./pages/signIn.tsx";
 
 import io from 'socket.io-client';
 
@@ -47,8 +42,7 @@ function App() {
 	  };
 
   useEffect(() => {
-    //testing
-    //socket.emit('info_from_client', 'Hello from React!');
+
     
     // Listen for messages from Flask
     socket.on('message_to_client', (data: string) => {
