@@ -16,13 +16,6 @@ app = Flask(__name__)
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="http://ipToReplace:5173", path='/socket.io')
 
-#testing
-#@socketio.on('info_from_client')
-#def handle_info(data):
-#    print(f"Received information from React: {data}")
-
-    # Send a response back to React
- #   socketio.emit('message_to_client', 'Information received by Flask!')
     
 
 def get_current_time():
